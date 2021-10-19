@@ -1,0 +1,39 @@
+version: "3.0"  # orig 3.0
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: perfectfit
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+
+  manage:
+    image: e2e-manage-db
+    tty: true
+    depends_on:
+      - db
+    volumes:
+      - ./dbschema:/dbschema
+
+  rasa_server:
+    image: e2e-rasa-server
+    ports:
+      - 5005:5005
+    expose: ["5005"]
+
+  rasa_actions:
+    image: e2e-rasa-actions
+    expose: ["5055"]
+
+  niceday-broker:
+    image: e2e-niceday-broker
+    env_file:
+      - .env
+
+  niceday-api:
+    image: e2e-niceday-api
+    env_file:
+      - .env
