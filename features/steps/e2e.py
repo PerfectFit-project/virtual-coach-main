@@ -5,7 +5,7 @@ import requests
 
 RASA_URL = 'http://localhost:5005'
 DB_URL = 'http://localhost:5432'
-EXPECTED_RUNNING_DISTANCE_RESPONSE = 'you should run 40.0 kilometers this week'
+EXPECTED_RUNNING_DISTANCE_RESPONSE = 'you should run 26.5 kilometers this week'
 EXPECTED_PLANNING_OFFERS = ['Zal ik de planning in je NiceDay agenda zetten?',
                             'Wil je dat ik de planning in je NiceDay agenda zet?']
 
@@ -23,7 +23,7 @@ def step_impl(context):
 
     body = {
         "message": "Kan ik de agenda voor de week krijgen?",
-        "sender": "user"}
+        "sender": "38527"}
 
     r = requests.post(webhookurl, json=body)
     r.raise_for_status()
@@ -39,7 +39,7 @@ def step_impl(context):
 
     body = {
         "message": "Ja",
-        "sender": "user"}
+        "sender": "38527"}
 
     r = requests.post(webhookurl, json=body)
     r.raise_for_status()
@@ -53,11 +53,12 @@ def step_impl(context):
 def step_impl(context):
     for msg in context.chat_responses:
         assert 'recipient_id' in msg
-        assert msg['recipient_id'] == 'user'
+        assert msg['recipient_id'] == '38527'
 
 
 @then('advice on running distance is given')
 def step_impl(context):
+    print(context.chat_responses)
     for msg in context.chat_responses:
         assert 'text' in msg
         if EXPECTED_RUNNING_DISTANCE_RESPONSE in msg['text']:
@@ -80,6 +81,7 @@ def step_impl(context):
 
 @then('rasa bot confirms it has added planning to niceday agenda')
 def step_impl(context):
+    print(context.chat_responses)
     for msg in context.chat_responses:
         assert 'text' in msg
         if 'Cool' in msg['text'] or 'Okay' in msg['text']:
