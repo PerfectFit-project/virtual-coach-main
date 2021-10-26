@@ -17,4 +17,4 @@ See .env-example for a template.
 
 3. Once all containers are initialised and healthy, run the tests by typing `behave`
 
-Alternatively, you can run the `run_e2e.sh` script, which executes the above steps.
+Alternatively, you can run the `scripts/test` script, which executes the above steps.

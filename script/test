@@ -1,3 +1,5 @@
+#!/bin/bash
+
 bash fetch_and_build_all_images.sh
 docker-compose up
 
