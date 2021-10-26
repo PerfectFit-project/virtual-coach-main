@@ -4,7 +4,6 @@ from behave import given, when, then
 import requests
 
 RASA_URL = 'http://localhost:5005'
-DB_URL = 'http://localhost:5432'
 EXPECTED_RUNNING_DISTANCE_RESPONSE = 'you should run 26.5 kilometers this week'
 EXPECTED_PLANNING_OFFERS = ['Zal ik de planning in je NiceDay agenda zetten?',
                             'Wil je dat ik de planning in je NiceDay agenda zet?']
