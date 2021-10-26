@@ -4,8 +4,9 @@ Contains end to end tests for full virtual coach setup.
 
 
 ## Setup
-Create a file called `.env` in the root of this app. Save the therapist user id and password in your `.env` file as THERAPIST_USER_ID and THERAPIST_PASSWORD, respectively.
+1. Create a file called `.env` in the root of this app. Save the therapist user id and password in your `.env` file as THERAPIST_USER_ID and THERAPIST_PASSWORD, respectively.
 See .env-example for a template.
+2. Install `behave` using `pip install behave`
 
 
 ## Usage
