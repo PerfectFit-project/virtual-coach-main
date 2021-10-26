@@ -9,3 +9,5 @@ Contains end to end tests for full virtual coach setup.
 2. Start everything with `docker compose up`.
 
 3. Once all containers are initialised and healthy, run the tests by typing `behave`
+
+Alternatively, you can run the `run_e2e.sh` script, which executes the above steps.
