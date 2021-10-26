@@ -35,6 +35,8 @@ services:
     expose: ["5055"]
     env_file:
       - .env
+    environment:
+      DB_HOST: db:5432
 
   niceday-broker:
     image: e2e-niceday-broker
