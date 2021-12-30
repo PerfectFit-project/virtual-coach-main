@@ -1,5 +1,16 @@
 # PerfectFit virtual coach system main repository
 This is a virtual coach system that will coach users into being more physically active and stop smoking.
+This is the main repository, for running the full application.
+Individual components of the app are in separate repositories:
+- [virtual-coach-rasa](https://github.com/PerfectFit-project/virtual-coach-rasa) 
+Contains code for rasa bot, the core of the virtual coach system.
+Also includes `scheduler`, and `onboarding`
+- [niceday-components](https://github.com/PerfectFit-project/niceday-components)
+Components for interfacing the virtual-coach with the niceday app and sensehealth server.
+- [niceday_client](https://github.com/PerfectFit-project/niceday_client)
+Python package for interacting with the niceday-api component of the PerfectFit virtual coach.
+- [virtual-coach-db](https://github.com/PerfectFit-project/virtual-coach-db)
+Code around database for virtual coach system
 
 ## Software development planning
 See [software development planning document](https://nlesc.sharepoint.com/:w:/r/sites/team-flow/Shared%20Documents/PerfectFit/Perfect%20Fit%20-%20RFCs/PerfectFit-RFC-0007-software-development-planning.docx?d=w434661cbf10c458998e9e45ea6451ea4&csf=1&web=1&e=8cxoLW)
