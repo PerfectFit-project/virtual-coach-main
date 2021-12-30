@@ -17,33 +17,46 @@ services:
     ports:
       - "5432:5432"
 
-  manage:
-    image: e2e-manage-db
+  manage_db:
+    image: manage-db
     build: .
     tty: true
     depends_on:
       - db
 
   rasa_server:
-    image: e2e-rasa-server
+    image: rasa-server
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    image: e2e-rasa-actions
+    image: rasa-actions
     expose: ["5055"]
     env_file:
       - .env
     environment:
       DB_HOST: db:5432
 
-  niceday-broker:
-    image: e2e-niceday-broker
+  niceday_broker:
+    image: niceday-broker
     env_file:
       - .env
 
-  niceday-api:
-    image: e2e-niceday-api
+  niceday_api:
+    image: niceday-api
     env_file:
       - .env
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+
+  scheduler:
+    image: scheduler
+    depends_on:
+     - redis
+     - rasa_server
+    environment:
+      DB_HOST: db:5432
