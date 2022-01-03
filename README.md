@@ -57,10 +57,14 @@ then do `docker build . -t virtual-coach-db-local`.
 with `image: virtual-coach-db-local`. 
 Note that the name of the image should correspond with the tag that you gave to it in the previous step
 
+NB: Don't commit changes to `docker-compose.yml`
+
 ### Pointing to a different branch:
 Alternatively you can point `docker-compose` to a different branch:
 In `docker-compose.yml` replace `build: https://github.com/PerfectFit-project/virtual-coach-db.git#main` 
 with `build: https://github.com/PerfectFit-project/virtual-coach-db.git#feature-branch`.
+
+NB: Don't commit changes to `docker-compose.yml`
 
 ### Database
 The database automatically loads the test data in `init_db_scripts/test.sql`.
