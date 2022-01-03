@@ -1,6 +1,6 @@
 #!/bin/bash
 pip install -r requirements-dev.txt
-bash script/fetch_and_build_all_images.sh
+bash script/bootstrap
 docker-compose up -d
 
 #TODO: Make this start when all containers fully up and healthy

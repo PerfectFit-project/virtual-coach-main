@@ -33,14 +33,36 @@ See .env-example for a template.
 
 ## Run application
 Run `script/server` script to serve the application, or follow these steps:
-1. Build the images of each component. 
-You can use `fetch_and_build_all_images.sh` to do this 
-(currently only works for the main branch of the `virtual-coach-server` and `virtual-coach-db` repos).
+1. Run `script/bootstrap` script
 2. Start everything with `docker compose up`.
 
 ## Test
 Run `script/test` script to serve the application and run `behave`, or follow these steps:
-1. Follow setup
+1. Run `script/bootstrap` script
 2. Install dev requirements using `pip install -r requirements-dev.txt`
-3. Once all containers are initialised and healthy, run the tests by typing `behave`
-4. Alternatively, you can run the `scripts/test` script, which executes the above steps.
+3. Start everything with `docker compose up`.
+4. Once all containers are initialised and healthy, run the tests by typing `behave`
+
+## For developers
+By default this setup use the main branch for each component. 
+As a developer you often want to use a different branch, or a local clone of the repository.
+
+### Using a local clone docker image:
+If you want to use a local clone, we suggest the following steps. 
+We use the `virtual-coach-db` repository as an example.
+1. Build a docker image based on your local repository. 
+`cd` into your local `virtual-coach-db` repository, 
+then do `docker build . -t virtual-coach-db-local`.
+2. In `docker-compose.yml` replace `build: https://github.com/PerfectFit-project/virtual-coach-db.git#main` 
+with `image: virtual-coach-db-local`. 
+Note that the name of the image should correspond with the tag that you gave to it in the previous step
+
+### Pointing to a different branch:
+Alternatively you can point `docker-compose` to a different branch:
+In `docker-compose.yml` replace `build: https://github.com/PerfectFit-project/virtual-coach-db.git#main` 
+with `build: https://github.com/PerfectFit-project/virtual-coach-db.git#feature-branch`.
+
+### Database
+The database automatically loads the test data in `init_db_scripts/test.sql`.
+So if you want to test with different data or a modified schema you have to update this.
+Or spin up the database and manipulate the data in the running database.
