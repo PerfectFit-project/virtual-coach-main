@@ -1,6 +1,6 @@
 # PerfectFit virtual coach system main repository
 This is a virtual coach system that will coach users into being more physically active and stop smoking.
-This is the main repository, for running the full application.
+This is the main repository for running the full application.
 Individual components of the app are in separate repositories:
 - [virtual-coach-rasa](https://github.com/PerfectFit-project/virtual-coach-rasa) 
 Contains code for rasa bot, the core of the virtual coach system.
