@@ -3,7 +3,8 @@ The general goal of PerfectFit is to Develop an eCoach app that will provide per
 and increasing physical activity based on personal (sensor) data 
 (read more [here](https://www.research-software.nl/projects/583)).
 
-This document describes the intended architecture for the eCoach.
+This document describes the intended architecture for the eCoach that will be used in the Perfect Fit project.
+See [this document](generic-version-design) for the design about a more generic version of the eCoach.
 
 ---
 
