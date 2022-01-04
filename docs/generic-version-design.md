@@ -1,4 +1,4 @@
-# Design (v1.0) generic version of the Perfect Fit virtual coach system
+# Design (v0.1) generic version of the Perfect Fit virtual coach system
 
 ## Why do we need a separate generic version?
 Because of the Niceday and Sensor Data Collector dependencies 
