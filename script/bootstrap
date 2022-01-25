@@ -6,3 +6,11 @@ if cd build/niceday-components
 then git pull
 else git clone https://github.com/PerfectFit-project/niceday-components.git build/niceday-components
 fi
+
+cd niceday-broker
+./script/bootstrap
+cd ..
+
+cd niceday-api
+./script/bootstrap
+cd ..
