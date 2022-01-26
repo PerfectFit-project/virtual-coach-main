@@ -5,6 +5,7 @@ const assert = require('assert');
 const RASA_URL = 'http://localhost:5005';
 const EXPECTED_PLANNING_OFFERS = ['Zal ik de planning in je NiceDay agenda zetten?',
                                   'Wil je dat ik de planning in je NiceDay agenda zet?'];
+const EXPECTED_RUNNING_DISTANCE_RESPONSE = 'you should run';
 
 let context = {};
 
@@ -84,15 +85,34 @@ When('we respond yes', function (callback) {
 });
 
 Then('rasa bot confirms it has added planning to niceday agenda', function (callback) {
-  console.log(context.chat_responses);
   assert(context.hasOwnProperty("chat_responses"));
   for (const msg of context.chat_responses) {
     assert(msg.hasOwnProperty("text"));
-    console.log(msg['text']);
     if (msg['text'].includes('Cool') || msg['text'].includes('Okay')) {
       callback();
     }
   }
   callback('No confirmation.');
 
+});
+
+Then('all messages are found to be addressed to the user', function (callback) {
+  assert(context.hasOwnProperty("chat_responses"));
+  for (const msg of context.chat_responses) {
+    assert(msg.hasOwnProperty('recipient_id'));
+    assert(msg['recipient_id'] === '38527');
+  }
+  callback();
+});
+
+Then('advice on running distance is given', function (callback) {
+  assert(context.hasOwnProperty("chat_responses"));
+  assert(context.chat_responses.length > 0);
+  for (const msg of context.chat_responses) {
+    assert(msg.hasOwnProperty("text"));
+    if (msg['text'].includes(EXPECTED_RUNNING_DISTANCE_RESPONSE)) {
+      callback();
+    }
+  }
+  callback('No advice on running given.');
 });
