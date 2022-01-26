@@ -37,11 +37,11 @@ Run `script/server` script to serve the application, or follow these steps:
 2. Start everything with `docker compose up`.
 
 ## Test
-Run `script/test` script to serve the application and run `behave`, or follow these steps:
+Run `script/test` script to serve the application and run `script/cucumber`, or follow these steps:
 1. Run `script/bootstrap` script
 2. Install dev requirements using `pip install -r requirements-dev.txt`
 3. Start everything with `docker compose up`.
-4. Once all containers are initialised and healthy, run the tests by typing `behave`
+4. Once all containers are initialised and healthy, run the tests by typing `script/cucumber`
 
 ## For developers
 By default this setup use the main branch for each component. 
