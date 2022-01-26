@@ -51,8 +51,6 @@ When('we ask for the agenda', function (callback) {
 });
 
 Then('rasa bot offers to add planning to niceday agenda', function (callback) {
-  console.log(context);
-
   assert(context.hasOwnProperty("chat_responses"));
   assert(context.chat_responses.length > 0);
   assert(context.chat_responses.at(-1).hasOwnProperty("text"));
@@ -60,3 +58,41 @@ Then('rasa bot offers to add planning to niceday agenda', function (callback) {
   callback();
 });
 
+When('we respond yes', function (callback) {
+  const webhookurl = RASA_URL + '/webhooks/rest/webhook';
+  const body = {
+      "message": "Ja",
+      "sender": "38527"};
+
+  fetch(webhookurl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+  .then(response => response.json())
+  .then(data => {
+    context.chat_responses = data
+    callback();
+  })
+  .catch((error) => {
+    callback(error);
+  });
+
+
+});
+
+Then('rasa bot confirms it has added planning to niceday agenda', function (callback) {
+  console.log(context.chat_responses);
+  assert(context.hasOwnProperty("chat_responses"));
+  for (const msg of context.chat_responses) {
+    assert(msg.hasOwnProperty("text"));
+    console.log(msg['text']);
+    if (msg['text'].includes('Cool') || msg['text'].includes('Okay')) {
+      callback();
+    }
+  }
+  callback('No confirmation.');
+
+});
