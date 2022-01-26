@@ -1,8 +1,8 @@
 #!/bin/bash
-pip install -r requirements-dev.txt
+npm install
 script/bootstrap
 docker-compose up -d
 
 #TODO: Make this start when all containers fully up and healthy
 sleep 30
-behave
+script/cucumber
