@@ -21,4 +21,3 @@ cd ..
 cd niceday-api/ || exit 1
 bash -ex ./script/bootstrap
 cd ..
-
