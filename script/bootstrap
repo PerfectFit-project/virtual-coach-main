@@ -2,16 +2,22 @@
 # Clone or pull niceday-components
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we clone it locally to build from there.
-if cd build/niceday-components
-then git pull
-else git clone https://github.com/PerfectFit-project/niceday-components.git build/niceday-components
-fi
 
+set -ex
 
-cd niceday-broker/ || exit 1
-./script/bootstrap
+(
+    set -ex
+    if cd build/niceday-components 2>/dev/null ; then
+        git pull origin main
+    else
+        git clone https://github.com/PerfectFit-project/niceday-components.git build/niceday-components
+    fi
+)
+
+cd build/niceday-components/niceday-broker/ || exit 1
+bash -ex ./script/bootstrap
 cd ..
 
 cd niceday-api/ || exit 1
-./script/bootstrap
+bash -ex ./script/bootstrap
 cd ..
