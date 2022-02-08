@@ -11,7 +11,7 @@ services:
       - "5432:5432"
 
   manage_db:
-    build: https://github.com/PerfectFit-project/virtual-coach-db.git#use-population-script-in-main
+    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
