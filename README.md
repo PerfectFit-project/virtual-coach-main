@@ -69,6 +69,13 @@ with `build: https://github.com/PerfectFit-project/virtual-coach-db.git#feature-
 NB: Don't commit changes to `docker-compose.yml`
 
 ### Database
-The database automatically loads the test data in `init_db_scripts/test.sql`.
-So if you want to test with different data or a modified schema you have to update this.
+Test data is automatically loaded into the database using a script in 
+`virtual-coach-db` [helper/populate_db.py](https://github.com/PerfectFit-project/virtual-coach-db/blob/ca6b5c79064c3b1dcf34ce83d1f59773f33427e3/helper/populate_db.py).
+So if you want to test with different data (particularly if you have updated the db schema by changing `models.py`) you have to update this.
 Or spin up the database and manipulate the data in the running database.
+
+NB: The database is saved automatically by docker. To empty the volume that stores the database do:
+```
+docker compose down --volumes
+```
+Next time you run the application the database will be reinitialized.
