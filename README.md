@@ -67,7 +67,7 @@ with `build: https://github.com/PerfectFit-project/virtual-coach-db.git#feature-
 NB: Don't commit changes to `docker-compose.yml`
 
 ### Database
-The database automatically loads the test data in 
+Test data is automatically loaded into the database using a script in 
 `virtual-coach-db` [helper/populate_db.py](https://github.com/PerfectFit-project/virtual-coach-db/blob/ca6b5c79064c3b1dcf34ce83d1f59773f33427e3/helper/populate_db.py).
 So if you want to test with different data you have to update this.
 Or spin up the database and manipulate the data in the running database.
