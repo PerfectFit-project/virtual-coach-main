@@ -61,6 +61,12 @@ Note that the name of the image should correspond with the tag that you gave to 
 
 NB: Don't commit changes to `docker-compose.yml`
 
+### Rebuilding from scratch:
+If you want to completley make sure that all docker images are rebuild without cache, and database will be reinitialized, do:
+```
+docker compose down --volumes && docker compose build --no-cache && docker compose up
+```
+
 ### Pointing to a different branch:
 Alternatively you can point `docker-compose` to a different branch:
 In `docker-compose.yml` replace `build: https://github.com/PerfectFit-project/virtual-coach-db.git#main` 
