@@ -1,3 +1,3 @@
 #!/bin/bash
 script/bootstrap
-docker-compose up
+docker compose down --volumes && docker-compose up --build
