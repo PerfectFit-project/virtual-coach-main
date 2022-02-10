@@ -73,7 +73,7 @@ If you want to rebuild the images that docker-compose uses
 (often you want this, because you want the latest changes to take effect), run:
 `docker compose up --build`
 
-If you want to completley make sure that all docker images are rebuild without cache, and database will be reinitialized, do:
+If you want to completely make sure that all docker images are rebuilt without cache, and the database will be reinitialized, do:
 ```
 docker compose down --volumes && docker compose build --no-cache && docker compose up
 ```
