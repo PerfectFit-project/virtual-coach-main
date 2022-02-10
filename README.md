@@ -32,11 +32,11 @@ Save the therapist email address and password in your `.env` file as THERAPIST_E
 See .env-example for a template.
 
 ## Run application
-Run `script/server` script to serve the application, or follow these steps:
-1. Run `script/bootstrap` script
-2. Start everything with `docker compose up`.
+Run `script/server` script to serve the application.
 
-NB: If you get a problem about "subdir not supported" during `docker-compose up`, set the buildkit feature to false in Docker. On Windows, you can do this in Docker Desktop>Settings>Build engine.
+NB: If you get a problem about "subdir not supported" during execution of `script/server`, 
+set the buildkit feature to false in Docker. 
+On Windows, you can do this in Docker Desktop>Settings>Build engine.
 
 ## Test
 Run `script/test`, or follow these steps:
@@ -61,18 +61,23 @@ Note that the name of the image should correspond with the tag that you gave to 
 
 NB: Don't commit changes to `docker-compose.yml`
 
-### Rebuilding from scratch:
-If you want to completley make sure that all docker images are rebuild without cache, and database will be reinitialized, do:
-```
-docker compose down --volumes && docker compose build --no-cache && docker compose up
-```
-
 ### Pointing to a different branch:
 Alternatively you can point `docker-compose` to a different branch:
 In `docker-compose.yml` replace `build: https://github.com/PerfectFit-project/virtual-coach-db.git#main` 
 with `build: https://github.com/PerfectFit-project/virtual-coach-db.git#feature-branch`.
 
 NB: Don't commit changes to `docker-compose.yml`
+
+### Rebuilding docker images:
+If you want to rebuild the images that docker-compose uses 
+(often you want this, because you want the latest changes to take effect), run:
+`docker compose up --build`
+
+If you want to completley make sure that all docker images are rebuild without cache, and database will be reinitialized, do:
+```
+docker compose down --volumes && docker compose build --no-cache && docker compose up
+```
+
 
 ### Database
 Test data is automatically loaded into the database using a script in 
