@@ -37,7 +37,7 @@ Run `script/server` script to serve the application.
 NB: If you get a problem about "subdir not supported" during execution of `script/server`, 
 set the buildkit feature to false in Docker. 
 On Windows, you can do this in Docker Desktop>Settings>Build engine.
-
+On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 ## Test
 Run `script/test`, or follow these steps:
 1. Run `script/bootstrap` script
