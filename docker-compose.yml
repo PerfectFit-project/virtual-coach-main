@@ -29,6 +29,7 @@ services:
       - .env
     environment:
       DB_HOST: db:5432
+      NICEDAY_API_ENDPOINT: 'http://niceday_api:8080/'
 
   redis:
     image: "redis:alpine"
