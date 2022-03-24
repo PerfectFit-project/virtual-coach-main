@@ -1,29 +1,37 @@
 Feature: Greetings
+
  Scenario: Greetings and user expresses positive mood
      Given rasa bot is up and running
       When user is authenticated
       Then test user is connected
+      When users says hi
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And therapist responds by greeting the user using the correct name
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist asks for the user mood
+      When users responds with positive mood
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And therapist congratulates
 
-
-
-Feature: Rasa Chat recommendations
-
-  Scenario: Add activity planning to Niceday Agenda
+ Scenario: Greetings and user expresses negative mood
      Given rasa bot is up and running
       When user is authenticated
       Then test user is connected
-      When we ask for the agenda
+      When users says hi
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
-       And advice on running distance is given
+       And therapist responds by greeting the user using the correct name
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And rasa bot offers to add planning to niceday agenda
-      When we respond yes
+       And therapist asks for the user mood
+      When users responds with negative mood
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
-       And rasa bot confirms it has added planning to niceday agenda
-
-
+       And therapist is sorry
