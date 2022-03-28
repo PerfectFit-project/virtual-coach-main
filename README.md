@@ -17,7 +17,7 @@ See [software development planning document](https://nlesc.sharepoint.com/:w:/r/
 
 ## Architecture design
 Take a look at the design [here](docs/design.md).
-A represetnation of the interactions among the components in a conversation flow can be found [here](docs/swimlane.jpg).
+A representaion of the interactions among the components in a conversation flow can be found [here](docs/swimlane.jpg).
 
 ## Setting up an account in the NiceDay alpha app
 1. Download the NiceDay alpha version on your phone. 
