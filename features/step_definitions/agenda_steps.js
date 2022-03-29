@@ -4,48 +4,6 @@ const assert = require('assert');
 const { Chat, SenseServerEnvironment, ConnectionStatus, Authentication, SenseServer } = require('@sense-os/goalie-js')
 const { Client } = require('pg');
 var fs = require('fs');
-//const RASA_URL = 'http://localhost:5005';
-const NICEDAY_API_URL = 'http://localhost:8080';
-
-const EXPECTED_PLANNING_OFFERS = ['Zal ik de planning in je NiceDay agenda zetten?',
-                                  'Wil je dat ik de planning in je NiceDay agenda zet?'];
-const EXPECTED_RUNNING_DISTANCE_RESPONSE = 'you should run';
-const EXPECTED_CONFIRMATION_RESPONSE = ['Okay, de planning staat nu in je NiceDay agenda.','Cool, ik heb de planning in je NiceDay agenda ingevoerd.'];
-const EXPECTED_MOOD_QUESTION = 'Hoe gaat het met je?';
-const EXPECTED_GREETINGS = 'Hallo ';
-const EXPECTED_POSITIVE_MOOD_RESPONSE = 'Ik ben blij dat te horen!';
-const EXPECTED_NEGATIVE_MOOD_RESPONSE = 'Aww, het spijt me. Ik hoop dat je je snel beter voelt.';
-const EXPECTED_CIGARETTES_RESPONSE = 'Je hebt vandaag ';
-const EXPECTED_EXERCISE_INTRODUCTION = ['Vandaag gaan wij een leuke oefening doen die je gaat helpen te stoppen met roken en genoeg te bewegen. ...',
-                                  'We gaan nu aan de slag met een oefening om jou te helpen met stoppen met roken en genoeg laten bewegen. ...',
-                                  'Om jou te helpen om genoeg te bewegen en te laten stoppen met roken, gaan we nu een oefening doen. ...'];
-const EXPECTED_EXERCISE_NAME = 'wie wil ik straks zijn';
-const EXPECTED_EXERCISE_DURATION = '15 minuten';
-const EXPECTED_AT_ONCE = 'Het is belangrijk';
-const EXPECTED_NOW_OR_LATER = 'Wil jij deze oefening nu doen of later?';
-const EXPECTED_CONFIRM_LATER = ['OK, het is wel goed als je deze oefening snel doet. Dit gaat je helpen je doelen te behalen. ...',
-                                  'Prima, dit is wel een belangrijke oefening die je snel moet doen. ...',
-                                  'Goed, laten we deze oefening later doen. ...'];
-const EXPECTED_WHEN_RESCHEDULE = 'Wanneer komt het beter uit? (1) Vanmiddag, om 17:00. (2) Vanavond, om 20:00. (3) Morgenochtend, om 8:00. Geef antwoord met 1, 2, of 3.';
-const EXPECTED_CONFIRM_TIME = 'Prima, ik kom dan bij je terug';
-
-const ASK_AGENDA = 'Kan ik de agenda voor de week krijgen?';
-const YES_RESPONSE = 'Ja';
-const USER_GREETINGS = 'Hi';
-const POSITIVE_MOOD = 'Ik voel me ook goed.';
-const NEGATIVE_MOOD = 'Ik voel me niet zo goed.';
-const REQUEST_CIGARETTES_NUMBER = 'Hoeveel sigaretten heb ik vandaag gerookt?';
-const START_SELF_DIALOG = 'Start future self dialog.';
-const LATER = 'Later';
-const NOW = 'nu';
-const TIME_CHOICE = '1';
-const SELECTED_SMOKING_WORDS = 'Fijn lekker eng';
-
-const THERAPIST_ID = '38714';
-const USERNAME = 'walter.baccinelli@gmail.com';
-const USER_PSW = 'Thisisatest1!';
-const USER_NAME = 'User';
-
 
 var {setDefaultTimeout} = require('@cucumber/cucumber');
 
@@ -67,7 +25,7 @@ const chatSdk = new Chat();
 chatSdk.init(SenseServerEnvironment.Alpha);
 
 function sendPatientMsg(txt, callback){
-   chatSdk.sendTextMessage(THERAPIST_ID, txt)
+   chatSdk.sendTextMessage(context.constants.THERAPIST_ID, txt)
   .then(response => {
     context.patient_message_response = response;
     callback();
@@ -294,8 +252,8 @@ Then('therapist asks when to reschedule the exercise', function (callback) {
   verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE, callback);
 });
 
-When('user chooses the time', function (callback) {
-  sendPatientMsg(context.constants.TIME_CHOICE, callback);
+When('user chooses option 1', function (callback) {
+  sendPatientMsg(context.constants.OPTION_1, callback);
 });
 
 Then('therapist confirms that a new time has been chosen', function (callback) {
@@ -306,15 +264,15 @@ When('user responds now', function (callback) {
   sendPatientMsg(context.constants.NOW, callback);
 });
 
-When('user selects words', function (callback) {
-  sendPatientMsg(context.constants.SELECTED_SMOKING_WORDS, callback);
+When('user selects smoker words', function (callback) {
+  sendPatientMsg(context.constants.SELECTED_SMOKER_WORDS, callback);
 });
 
 Then('therapist asks confirmation of the words', function (callback) {
-  verifyRasaResponse(context.constants.SELECTED_SMOKING_WORDS, callback);
+  verifyRasaResponse(context.constants.SELECTED_SMOKER_WORDS, callback);
 });
 
-Then('the words are stored in the DB', function (callback) {
+Then('the smoker words are stored in the DB', function (callback) {
      context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
       if (err) {
         callback('DB reading error')
@@ -322,7 +280,7 @@ Then('the words are stored in the DB', function (callback) {
       console.log('DB content: ', res.rows[0]);
         assert(res.rows[0]['question_id']==1);
         assert(res.rows[0]['users_nicedayuid']==context.user_id);
-        assert(res.rows[0]['answer']==context.constants.SELECTED_SMOKING_WORDS);
+        assert(res.rows[0]['answer']==context.constants.SELECTED_SMOKER_WORDS);
         callback();
       }
      })
@@ -332,8 +290,7 @@ When('user responds with free text', function (callback) {
   sendPatientMsg(context.constants.FREE_TEXT_ANSWER, callback);
 });
 
-Then('the why smoker answer text answer is stored in the DB', function (callback) {
- setTimeout(function(){
+Then('the smoker words answer is stored in the DB', function (callback) {
   context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
    if (err) {
     callback('DB reading error')
@@ -345,5 +302,47 @@ Then('the why smoker answer text answer is stored in the DB', function (callback
     callback();
    }
   })
- },2000); //wait 500ms to have the time to complete the DB writing
+});
+
+When('user selects mover words', function (callback) {
+  sendPatientMsg(context.constants.SELECTED_MOVER_WORDS, callback);
+});
+
+Then('the mover words are stored in the DB', function (callback) {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+   if (err) {
+    callback('DB reading error')
+   } else {
+   console.log('DB content: ', res.rows[0]);
+    assert(res.rows[0]['question_id']==3);
+    assert(res.rows[0]['users_nicedayuid']==context.user_id);
+    assert(res.rows[0]['answer']==context.constants.SELECTED_MOVER_WORDS);
+    callback();
+   }
+  })
+});
+
+Then('the mover words answer is stored in the DB', function (callback) {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+   if (err) {
+    callback('DB reading error')
+   } else {
+   console.log('DB content: ', res.rows[0]);
+    assert(res.rows[0]['question_id']==4);
+    assert(res.rows[0]['users_nicedayuid']==context.user_id);
+    assert(res.rows[0]['answer']==context.constants.FREE_TEXT_ANSWER);
+    callback();
+   }
+  })
+});
+
+Then('therapist responds by confirming the option 1 choice', function (callback) {
+  verifyRasaResponse(context.constants.OPTION_1, callback);
+});
+
+Then('the dialog is concluded', function (callback) {
+  context.client
+   .end()
+   .then(() =>callback())
+   .catch(err => callback(err));
 });

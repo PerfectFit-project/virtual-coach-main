@@ -4,6 +4,7 @@ Feature: Greetings
      Given rasa bot is up and running
       When user is authenticated
       Then test user is connected
+       And the conversation is restarted
       When users says hi
       Then the message is addressed to the therapist
       When therapist produces a response
@@ -22,6 +23,7 @@ Feature: Greetings
      Given rasa bot is up and running
       When user is authenticated
       Then test user is connected
+       And the conversation is restarted
       When users says hi
       Then the message is addressed to the therapist
       When therapist produces a response

@@ -4,6 +4,7 @@ Feature: Rasa Chat recommendations
      Given rasa bot is up and running
       When user is authenticated
       Then test user is connected
+       And the conversation is restarted
       When we ask for the agenda
       Then the message is addressed to the therapist
       When therapist produces a response
@@ -12,7 +13,7 @@ Feature: Rasa Chat recommendations
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And rasa bot offers to add planning to niceday agenda
-      When we respond yes
+      When user responds yes
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user

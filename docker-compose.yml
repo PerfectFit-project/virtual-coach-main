@@ -11,7 +11,7 @@ services:
       - "5432:5432"
 
   manage_db:
-    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
+    image: db_local
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
@@ -19,7 +19,7 @@ services:
   rasa_server:
     build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
     ports:
-      - 5005:5005
+      - "5005:5005"
     expose: ["5005"]
 
   rasa_actions:
@@ -36,13 +36,13 @@ services:
     ports:
       - 6379:6379
 
-  scheduler:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
-    depends_on:
-     - redis
-     - rasa_server
-    environment:
-      DB_HOST: db:5432
+  #scheduler:
+   # build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+   # depends_on:
+    # - redis
+     #- rasa_server
+    #environment:
+     # DB_HOST: db:5432
 
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we build it from the cloned repository.
@@ -55,3 +55,5 @@ services:
     build: ./build/niceday-components/niceday-api
     env_file:
       - .env
+    ports:
+      - "8080:8080"

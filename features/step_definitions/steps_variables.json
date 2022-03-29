@@ -6,6 +6,10 @@
   "DB_NAME": "perfectfit",
   "DB_PASSWORD": "root",
   "DB_PORT": 5432,
+  "THERAPIST_ID": "38714",
+  "USERNAME": "walter.baccinelli@gmail.com",
+  "USER_PSW": "Thisisatest1!",
+  "USER_NAME": "User",
   "EXPECTED_PLANNING_OFFERS": ["Zal ik de planning in je NiceDay agenda zetten?",
     "Wil je dat ik de planning in je NiceDay agenda zet?"],
   "EXPECTED_RUNNING_DISTANCE_RESPONSE": "you should run",
@@ -37,11 +41,8 @@
   "START_SELF_DIALOG": "Start future self dialog.",
   "LATER": "Later",
   "NOW": "nu",
-  "TIME_CHOICE": "1",
-  "SELECTED_SMOKING_WORDS": "Fijn lekker eng",
-  "FREE_TEXT_ANSWER": "This is a free text answer",
-  "THERAPIST_ID": "38714",
-  "USERNAME": "walter.baccinelli@gmail.com",
-  "USER_PSW": "Thisisatest1!",
-  "USER_NAME": "User"
+  "OPTION_1": "1",
+  "SELECTED_SMOKER_WORDS": "Fijn lekker eng",
+  "SELECTED_MOVER_WORDS": "plezierig belonend geen zin in",
+  "FREE_TEXT_ANSWER": "This is a free text answer"
 }
