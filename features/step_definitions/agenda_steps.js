@@ -42,7 +42,7 @@ function verifyRasaResponse(expected_response, callback){
   if (context.therapist_response['content']['TEXT'].includes(expected_response)) {
     callback();
   }
-  callback('Error');
+  callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
 function verifyRasaResponseMultiple(expected_response, callback){
@@ -264,6 +264,26 @@ When('user responds now', function (callback) {
   sendPatientMsg(context.constants.NOW, callback);
 });
 
+Then('therapist confirms to do it now', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_CONFIRM_NOW, callback);
+});
+
+Then('therapist explains the future self dialog', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_FUTURE_SELF_EXPLANATION, callback);
+});
+
+Then('therapist asks which kind of smoker the user is', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
+});
+
+Then('therapist shows the smoking words list', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_SMOKING_WORDS_LIST, callback);
+});
+
+Then('therapist asks to pick words', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_PICK_WORDS_REQUEST, callback);
+});
+
 When('user selects smoker words', function (callback) {
   sendPatientMsg(context.constants.SELECTED_SMOKER_WORDS, callback);
 });
@@ -286,8 +306,20 @@ Then('the smoker words are stored in the DB', function (callback) {
      })
 });
 
+Then('therapist says good', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_UTTER_GOOD, callback);
+});
+
+Then('therapist asks why smoker words', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_WHY_SMOKER_WORDS, callback);
+});
+
 When('user responds with free text', function (callback) {
   sendPatientMsg(context.constants.FREE_TEXT_ANSWER, callback);
+});
+
+Then('therapist responds on the words explanation', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_WHY_WORDS_RESPONSE, callback);
 });
 
 Then('the smoker words answer is stored in the DB', function (callback) {
@@ -302,6 +334,18 @@ Then('the smoker words answer is stored in the DB', function (callback) {
     callback();
    }
   })
+});
+
+Then('therapist introduces current mover', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_INTRODUCTION, callback);
+});
+
+Then('therapist introduces current mover words list', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
+});
+
+Then('therapist shows current mover words list', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_MOVER_WORDS_LIST, callback);
 });
 
 When('user selects mover words', function (callback) {
@@ -322,6 +366,14 @@ Then('the mover words are stored in the DB', function (callback) {
   })
 });
 
+Then('therapist asks confirmation of the mover words', function (callback) {
+  verifyRasaResponse(context.constants.SELECTED_MOVER_WORDS, callback);
+});
+
+Then('therapist asks why mover words', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_WHY_MOVER_WORDS, callback);
+});
+
 Then('the mover words answer is stored in the DB', function (callback) {
   context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
    if (err) {
@@ -336,8 +388,40 @@ Then('the mover words answer is stored in the DB', function (callback) {
   })
 });
 
+Then('therapist introduces self view', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_SELF_VIEW_INTRODUCTION, callback);
+});
+
+Then('therapist shows self view options', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_SELF_VIEW_OPTIONS, callback);
+});
+
 Then('therapist responds by confirming the option 1 choice', function (callback) {
   verifyRasaResponse(context.constants.OPTION_1, callback);
+});
+
+Then('therapist says leuk', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_LEUK, callback);
+});
+
+Then('therapist shows self mover view options', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_SELF_MOVER_VIEW_OPTIONS, callback);
+});
+
+Then('therapist asks to choose an option', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_CHOOSE_OPTION, callback);
+});
+
+Then('therapist says fijn', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_FIJN, callback);
+});
+
+Then('therapist asks why the smoker definition', function (callback) {
+  verifyRasaResponse(context.constants.SEE_MYSELF_SMOKER_TEXT, callback);
+});
+
+Then('therapist asks why the mover definition', function (callback) {
+  verifyRasaResponse(context.constants.SEE_MYSELF_MOVER_TEXT, callback);
 });
 
 Then('the dialog is concluded', function (callback) {
