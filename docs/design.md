@@ -23,13 +23,6 @@ framework.
 See [this overview](https://nlesc.sharepoint.com/:x:/s/team-flow/EUCPwrKzPY1BikrYk_BDhCcB8vBLgsI-xsT63dedExPQaA?e=GlfxeO)
 
 ---
-
-## Architecture sketch
-<img src = "img/design.png" width = "1000" title="Design">
-
-See it also on [whimsical](https://whimsical.com/perfectfit-UtvRnxdP8P79humXTnjb9J)
-
----
 ## Components
 ### Smartphone applications
 #### Niceday app (already developed)
@@ -159,3 +152,92 @@ The workers are subscribed to this queue and process the data, then notify other
 ### Expiration of data
 Some data might only be needed for a certain time period, especially sensor data. 
 A specific worker should remove data if it is expired (data should have an expiry-date field in db).
+
+---
+
+## Architecture sketch
+<img src = "img/design.png" width = "1000" title="Design">
+
+See it also on [whimsical](https://whimsical.com/perfectfit-UtvRnxdP8P79humXTnjb9J)
+
+---
+
+## Functionalities
+An overview of the functionalities built into PerfectFit is shown here below. These repositories implement the chatbot conversation functionality.
+
+<img src = "img/usecase_diagram.png" width = "500" title="Use case">
+
+The chatbot uses a set of components that allow the conversation to flow in the intended way, consuming and saving data from different sources (i.e., Niceday server and local DB). A representation of the interactions among the components in the conversation flow is shown here below:
+
+<img src = "img/swimlane.png" width = "1000" title="Swimlane">
+
+---
+
+## Communication among the components
+
+### Messages
+The communication between the user and the PerfectFit chatbot makes use of the [goalie-js](https://github.com/senseobservationsystems/goalie-js) module for messages exchange  with the Niceday Server, in combination with the niceday-broker. 
+When the [niceday-broker](https://github.com/PerfectFit-project/niceday-components/blob/main/niceday-broker) package is built and run (see [here](https://github.com/PerfectFit-project/niceday-components/blob/main/niceday-broker/README.md)), it connects to the Niceday Server with a therapist account using the credentials stored in the .env file contained in the [virtual-coach-main](https://github.com/PerfectFit-project/virtual-coach-main) repository. Upon a successful connection, the broker subscribes to the incoming messages directed to the therapist account, and forwards them to the Rasa conversational engine, that responds to the user’s messages as a therapist, following the conversation logic implemented in [Rasa_Bot](https://github.com/PerfectFit-project/virtual-coach-rasa/tree/main/Rasa_Bot).
+When a new message is received, the broker composes a message according to the rasa server interface specifications and sends it to the Rasa server though an HTTP POST request. The response to the HTTP request contains the list of messages produced by the Rasa Bot. Upon the response reception, the broker sends each single message to the Niceday server using the sendTextMessage(id, text) function of the Chat object of [goalie-js](https://github.com/senseobservationsystems/goalie-js).
+
+<img src = "img/sequence.png" width = "500" title="Sequence diagram">
+
+### Data exchange with Niceday Server
+
+To retrieve data from the Niceday Server, the [Niceday API](https://github.com/PerfectFit-project/niceday-components/tree/main/niceday-api) has to be used. The  API is used by the Rasa actions, using the [NicedayClient](https://github.com/PerfectFit-project/niceday_client) Python interface. 
+
+<img src = "img/sequence_data.png" width = "500" title="Sequence diagram data">
+
+### Data exchange with local Database
+
+User’s data and output of the conversations can be stored to and retrieved from the local DB, represented here below. The interactions with the DB are performed by the rasa actions, using the [virtual-coach-db](https://github.com/PerfectFit-project/virtual-coach-db) package.
+
+<img src = "img/db.png" width = "300" title="Sequence diagram data">
+
+---
+
+## Interfaces specifications
+
+The different components exchange information one with the other using HTTP requests. The requests specifications are reported here below.
+N.B. The URLs  reported are assuming that the component is running using the Docker image generated using the [docker-compose file](https://github.com/PerfectFit-project/virtual-coach-main/blob/main/docker-compose.yml). If the components are running in isolation, or outside the Docker network, the URL has to be changed accordingly. 
+
+###Rasa server
+
+URL: http://rasa_server:5005/webhooks/rest/webhook
+
+Request type: POST
+
+Body:
+
+{
+    "sender":"sender_id",
+    "message":"text_message"
+}
+
+Output:
+
+[
+    {
+        "recipient_id": "id",
+        "text": "text_message"
+    },
+    {
+        "recipient_id": "id",
+        "text": " text_message”
+    }
+]
+
+###Rasa actions
+
+URL: http://rasa_actions:5005/webhook
+
+[Specifications](https://rasa.com/docs/rasa/custom-actions/)
+
+###Niceday API
+
+URL: http://niceday_api:8080/
+
+Specifications for the API usage can be found in the Swagger UI interface, as shown [here](https://github.com/PerfectFit-project/niceday-components/tree/main/niceday-api/README.md).
+
+###Broker
+The Broker cannot be queried directly, but the [goalie-js](https://github.com/senseobservationsystems/goalie-js) interfaces have to be used. 

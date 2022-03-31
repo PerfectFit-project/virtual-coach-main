@@ -16,8 +16,7 @@ Code around database for virtual coach system
 See [software development planning document](https://nlesc.sharepoint.com/:w:/r/sites/team-flow/Shared%20Documents/PerfectFit/Perfect%20Fit%20-%20RFCs/PerfectFit-RFC-0007-software-development-planning.docx?d=w434661cbf10c458998e9e45ea6451ea4&csf=1&web=1&e=8cxoLW)
 
 ## Architecture design
-Take a look at the design [here](docs/design.md).
-A representation of the interactions among the components in a conversation flow can be found [here](docs/swimlane.jpg).
+Details about the architecture design and the interactions among the components can be found [here](docs/design.md).
 
 ## Setting up an account in the NiceDay alpha app
 1. Download the NiceDay alpha version on your phone. 
