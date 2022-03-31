@@ -43,12 +43,13 @@ On Windows, you can do this in Docker Desktop>Settings>Build engine.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 ## Test
 Run `script/test`, or follow these steps:
-1. Run `script/bootstrap` script
-2. Install dev requirements using `pip install -r requirements-dev.txt`
+1. Run `npm install`
+2. Run `script/bootstrap` script
 3. Start everything with `docker compose up`.
 4. Once all containers are initialised and healthy, run the tests by typing `script/cucumber`
 
-To run a specific feature, add the path to the specific .feature file to the `script/cucumber` script. For example, to run the selfdialog feature, the following command has to be used: `./node_modules/.bin/cucumber-js features/selfdialog.feature`
+To run a specific feature, add the path to the specific .feature file to the `script/cucumber` script. 
+For example, to run the selfdialog feature, the following command has to be used: `./node_modules/.bin/cucumber-js features/selfdialog.feature`
 
 ## For developers
 By default this setup use the main branch for each component. 

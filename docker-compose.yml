@@ -55,3 +55,6 @@ services:
     build: ./build/niceday-components/niceday-api
     env_file:
       - .env
+    ports:
+      - 8080:8080
+    expose: ["8080"]
