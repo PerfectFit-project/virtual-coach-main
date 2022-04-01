@@ -50,6 +50,13 @@ Run `script/test`, or follow these steps:
 To run a specific feature, add the path to the specific .feature file to the `script/cucumber` script. 
 For example, to run the selfdialog feature, the following command has to be used: `./node_modules/.bin/cucumber-js features/selfdialog.feature`
 
+### Updating the testing routine 
+
+The testing procedure is build using [cucumber](https://cucumber.io/docs). 
+By running the tests, the features implemented in the .feature files contained in feature folder are executed, using the implementation contained in `features/agenda_steps.js`.
+Each scenario in the feature represents all the steps of one dialog, and the testing executes all of them and verifies that the result is the expected one.
+In case of modifications to the dialogs, the testing steps have to be updated accordingly, by modifying the steps in the .feature file and their implementation in the agenda_steps.js file.
+
 ## For developers
 By default this setup use the main branch for each component. 
 As a developer you often want to use a different branch, or a local clone of the repository.
