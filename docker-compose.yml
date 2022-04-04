@@ -17,13 +17,13 @@ services:
     command: ["/app/utils/init-db.sh"]
 
   rasa_server:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#resched_options:Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#resched_options:Rasa_Bot/actions
     expose: ["5055"]
     env_file:
       - .env
