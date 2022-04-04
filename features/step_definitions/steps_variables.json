@@ -37,9 +37,9 @@
   "EXPECTED_WHEN_RESCHEDULE_MORNING": "Wanneer komt het beter uit? (1) In een uur. (2) Vanmiddag, om 16:00. (3) Vanavond, om 21:00. (4) Morgenochtend om deze tijd. Geef antwoord met 1, 2, 3, of 4.",
   "EXPECTED_WHEN_RESCHEDULE_AFTERNOON": "Wanneer komt het beter uit? (1) In een uur. (2) Vanavond, om 21:00. (3) Morgenochtend, om 8:00. (4) Morgenmiddag om deze tijd. Geef antwoord met 1, 2, 3, of 4.",
   "EXPECTED_WHEN_RESCHEDULE_EVENING": "Wanneer komt het beter uit? (1) In een uur. (2) Morgenochtend, om 8:00. (3) Morgenmiddag, om 16:00. (4) Morgenavond om deze tijd. Geef antwoord met 1, 2, 3, of 4.",
-  "NIGHT_END": 6
-  "MORNING_END": 12
-  "AFTERNOON_END": 18
+  "NIGHT_END": 6,
+  "MORNING_END": 12,
+  "AFTERNOON_END": 18,
   "EXPECTED_CONFIRM_TIME": "Prima, ik kom dan bij je terug",
   "EXPECTED_FUTURE_SELF_EXPLANATION": "Deze oefening gaat je op weg helpen om te stoppen met roken en genoeg te bewegen",
   "EXPECTED_WHAT_SMOKER": "Eerst kijken wij wat voor roker jij op dit moment bent. Ik laat je zo een lijst met woorden zien. Welke woorden passen bij jou als roker?",
