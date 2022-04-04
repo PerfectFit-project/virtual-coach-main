@@ -249,7 +249,19 @@ Then('therapist responds by confirming the later choice', function (callback) {
 });
 
 Then('therapist asks when to reschedule the exercise', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE, callback);
+	var now = new Date();
+	var current_hour = now.getHours()
+	
+	if (current_hour < context.constants.NIGHT_END){
+    verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE_NIGHT, callback);
+   } else if (current_hour < context.constants.MORNING_END){
+	verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE_MORNING, callback);
+   } else if (current_hour < context.constants.AFTERNOON_END){
+	verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE_AFTERNOON, callback);
+   } else {
+    verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE_EVENING, callback);
+   }
+  
 });
 
 When('user chooses option 1', function (callback) {
