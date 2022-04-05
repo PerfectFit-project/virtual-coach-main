@@ -41,6 +41,11 @@ set the buildkit feature to false in Docker.
 On Windows, you can do this in Docker Desktop>Settings>Build engine.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 ## Test
+
+To run the tests, Node.js has to be installed, using [the installer](https://nodejs.org/en/download/).
+
+NB: On Windows, make sure that the path to nodejs (default C:\Program Files\nodejs\) is correctly added to the Path environment variable.
+
 Run `script/test`, or follow these steps:
 1. Run `npm install`
 2. Run `script/bootstrap` script
