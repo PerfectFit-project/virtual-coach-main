@@ -15,8 +15,8 @@ services:
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
-    environment:
-      - DATABASE_URL=postgresql+psycopg2://root:root@db/perfectfit
+    env_file:
+      - .env
 
   rasa_server:
     build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
@@ -29,9 +29,6 @@ services:
     expose: ["5055"]
     env_file:
       - .env
-    environment:
-      DB_HOST: db:5432
-      NICEDAY_API_ENDPOINT: 'http://niceday_api:8080/'
 
   redis:
     image: "redis:alpine"
@@ -43,8 +40,8 @@ services:
     depends_on:
      - redis
      - rasa_server
-    environment:
-      DB_HOST: db:5432
+    env_file:
+      - .env
 
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we build it from the cloned repository.
