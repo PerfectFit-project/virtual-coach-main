@@ -32,7 +32,7 @@
   "EXPECTED_CONFIRM_NOW": ["Super dat je er gelijk mee aan de slag gaat! ...",
                            "Leuk, laten we beginnen. ...",
                            "Mooi, we gaan aan de slag! ...",
-                           "Goed bezig, deze activiteit gaat je helpen met je doelen."],
+                           "Goed bezig, deze activiteit gaat je helpen met je doelen. ..."],
   "EXPECTED_WHEN_RESCHEDULE": "Wanneer komt het beter uit? (1) Vanmiddag, om 17:00. (2) Vanavond, om 20:00. (3) Morgenochtend, om 8:00. Geef antwoord met 1, 2, of 3.",
   "EXPECTED_CONFIRM_TIME": "Prima, ik kom dan bij je terug",
   "EXPECTED_FUTURE_SELF_EXPLANATION": "Deze oefening gaat je op weg helpen om te stoppen met roken en genoeg te bewegen",

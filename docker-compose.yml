@@ -11,19 +11,19 @@ services:
       - "5432:5432"
 
   manage_db:
-    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
+    build: https://github.com/PerfectFit-project/virtual-coach-db.git#store_identity_answers
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
 
   rasa_server:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+    image: rasa-local
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    image: actions-local
     expose: ["5055"]
     env_file:
       - .env
