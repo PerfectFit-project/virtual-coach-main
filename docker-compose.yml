@@ -19,13 +19,17 @@ services:
       - .env
 
   rasa_server:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      dockerfile: Dockerfile.rasa_server
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+      dockerfile: Dockerfile.rasa_actions
     expose: ["5055"]
     env_file:
       - .env
@@ -36,7 +40,9 @@ services:
       - 6379:6379
 
   scheduler:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+      dockerfile: Dockerfile.scheduler
     depends_on:
      - redis
      - rasa_server
@@ -46,12 +52,16 @@ services:
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we build it from the cloned repository.
   niceday_broker:
-    build: ./build/niceday-components/niceday-broker
+    build:
+      context: ./build/niceday-components/niceday-broker
+      dockerfile: Dockerfile.niceday_broker
     env_file:
       - .env
 
   niceday_api:
-    build: ./build/niceday-components/niceday-api
+    build:
+      context: ./build/niceday-components/niceday-api
+      dockerfile: Dockerfile.niceday_api
     env_file:
       - .env
     ports:
