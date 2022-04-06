@@ -11,7 +11,7 @@ services:
       - "5432:5432"
 
   manage_db:
-    build: https://github.com/PerfectFit-project/virtual-coach-db.git#issue236_use_DATABASE_URL
+    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
@@ -19,15 +19,13 @@ services:
       - .env
 
   rasa_server:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#issue236_use_DATABASE_URL:Rasa_Bot
+    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
-    env_file:
-      - .env
 
   rasa_actions:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#issue236_use_DATABASE_URL:Rasa_Bot/actions
+    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
     expose: ["5055"]
     env_file:
       - .env
@@ -38,7 +36,7 @@ services:
       - 6379:6379
 
   scheduler:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#issue236_use_DATABASE_URL:scheduler
+    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
     depends_on:
      - redis
      - rasa_server
