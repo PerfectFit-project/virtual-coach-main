@@ -52,12 +52,16 @@ services:
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we build it from the cloned repository.
   niceday_broker:
-    build: ./build/niceday-components/niceday-broker
+    build:
+      context: ./build/niceday-components/niceday-broker
+      dockerfile: Dockerfile.niceday_broker
     env_file:
       - .env
 
   niceday_api:
-    build: ./build/niceday-components/niceday-api
+    build:
+      context: ./build/niceday-components/niceday-api
+      dockerfile: Dockerfile.niceday_api
     env_file:
       - .env
     ports:
