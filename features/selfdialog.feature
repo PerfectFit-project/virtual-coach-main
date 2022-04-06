@@ -156,6 +156,7 @@ Feature: Future self dialog
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist asks to choose an option
+       And the smoker identity answer is stored in the DB
       When user chooses option 1
       Then the message is addressed to the therapist
       When therapist produces a response
@@ -168,6 +169,7 @@ Feature: Future self dialog
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist asks why the smoker definition
+       And the mover identity answer is stored in the DB
       When user responds with free text
       Then the message is addressed to the therapist
        And therapist produces a response

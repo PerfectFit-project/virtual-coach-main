@@ -400,6 +400,34 @@ Then('the mover words answer is stored in the DB', function (callback) {
   })
 });
 
+Then('the mover identity answer is stored in the DB', function (callback) {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+   if (err) {
+    callback('DB reading error')
+   } else {
+   console.log('DB content: ', res.rows[0]);
+    assert(res.rows[0]['question_id']==6);
+    assert(res.rows[0]['users_nicedayuid']==context.user_id);
+    assert(res.rows[0]['answer']==context.constants.OPTION_1);
+    callback();
+   }
+  })
+});
+
+Then('the smoker identity answer is stored in the DB', function (callback) {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+   if (err) {
+    callback('DB reading error')
+   } else {
+   console.log('DB content: ', res.rows[0]);
+    assert(res.rows[0]['question_id']==5);
+    assert(res.rows[0]['users_nicedayuid']==context.user_id);
+    assert(res.rows[0]['answer']==context.constants.OPTION_1);
+    callback();
+   }
+  })
+});
+
 Then('therapist introduces self view', function (callback) {
   verifyRasaResponse(context.constants.EXPECTED_SELF_VIEW_INTRODUCTION, callback);
 });
