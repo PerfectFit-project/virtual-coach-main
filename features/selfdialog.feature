@@ -34,7 +34,7 @@ Feature: Future self dialog
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist asks when to reschedule the exercise
-      When user chooses the time
+      When user chooses option 1
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
