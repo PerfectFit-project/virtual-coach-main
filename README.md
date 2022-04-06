@@ -30,7 +30,9 @@ This can be with the same credentials as for the normal NiceDay app.
 ## Setup
 1. Create a file called `.env` in the root of this app.
 Save the therapist email address and password in your `.env` file as THERAPIST_EMAIL_ADDRESS and THERAPIST_PASSWORD, respectively.
-See .env-example for a template.
+The .env file must also contain `DATABASE_URL`, which points to the location of the perfectfit database on a running postgres server.
+For local development this will normally be: `postgresql+psycopg2://root:root@db/perfectfit`
+See .env-example for a template. The values in `.env-example` are already set to work for local runs with docker compose (with the exception of THERAPIST_EMAIL_ADDRESS and THERAPIST_PASSWORD, which must be provided).
 2. Some of the resources needed to run the application are to be pulled from the GitHub repositories. To allow the pulling, a [SSH key has to be created and added to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
 3. Since the goalie-js repository is private, access to the senseobservationsystems/goalie-js.git repository has to be obtained.
 
