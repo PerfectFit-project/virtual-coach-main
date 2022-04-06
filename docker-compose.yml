@@ -19,13 +19,17 @@ services:
       - .env
 
   rasa_server:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      dockerfile: Dockerfile.rasa_server
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+      dockerfile: Dockerfile.rasa_actions
     expose: ["5055"]
     env_file:
       - .env
@@ -36,7 +40,9 @@ services:
       - 6379:6379
 
   scheduler:
-    build: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+      dockerfile: Dockerfile.scheduler
     depends_on:
      - redis
      - rasa_server
