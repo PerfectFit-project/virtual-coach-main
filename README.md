@@ -21,7 +21,7 @@ A representation of the interactions among the components in a conversation flow
 
 ## Setting up an account in the NiceDay alpha app
 1. Ask any of this project's contributors to request an invitation for installing NiceDay alpha version
-2. Download and install the NiceDay alpha version on your phone
+2. Download and install the NiceDay alpha version on your phone using the link in the invitation email
 3. Open the downloaded app and create a client account. 
 This is the account you will use to test functionality in the app and talk to the virtual coach.
 It is possible to use the same credentials for both the alpha and normal NiceDay app.
