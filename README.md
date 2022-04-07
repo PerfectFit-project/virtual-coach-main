@@ -16,8 +16,7 @@ Code around database for virtual coach system
 See [software development planning document](https://nlesc.sharepoint.com/:w:/r/sites/team-flow/Shared%20Documents/PerfectFit/Perfect%20Fit%20-%20RFCs/PerfectFit-RFC-0007-software-development-planning.docx?d=w434661cbf10c458998e9e45ea6451ea4&csf=1&web=1&e=8cxoLW)
 
 ## Architecture design
-Take a look at the design [here](docs/design.md).
-A representation of the interactions among the components in a conversation flow can be found [here](docs/swimlane.jpg).
+Details about the architecture design and the interactions among the components can be found [here](docs/design.md).
 
 ## Setting up an account in the NiceDay alpha app
 1. Ask any of this project's contributors to request an invitation for installing NiceDay alpha version
@@ -52,6 +51,11 @@ set the buildkit feature to false in Docker.
 On Windows, you can do this in Docker Desktop>Settings>Build engine.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 ## Test
+
+To run the tests, Node.js has to be installed, using [the installer](https://nodejs.org/en/download/).
+
+NB: On Windows, make sure that the path to nodejs (default C:\Program Files\nodejs\) is correctly added to the Path environment variable.
+
 Run `script/test`, or follow these steps:
 1. Run `npm install`
 2. Run `script/bootstrap` script
@@ -60,6 +64,13 @@ Run `script/test`, or follow these steps:
 
 To run a specific feature, add the path to the specific .feature file to the `script/cucumber` script. 
 For example, to run the selfdialog feature, the following command has to be used: `./node_modules/.bin/cucumber-js features/selfdialog.feature`
+
+### Updating the testing routine 
+
+The testing procedure is build using [cucumber](https://cucumber.io/docs). 
+By running the tests, the features implemented in the .feature files contained in feature folder are executed, using the implementation contained in `features/agenda_steps.js`.
+Each scenario in the feature represents all the steps of one dialog, and the testing executes all of them and verifies that the result is the expected one.
+In case of modifications to the dialogs, the testing steps have to be updated accordingly, by modifying the steps in the .feature file and their implementation in the agenda_steps.js file.
 
 ## For developers
 By default this setup use the main branch for each component. 
