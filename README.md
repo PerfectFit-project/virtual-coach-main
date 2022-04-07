@@ -20,12 +20,20 @@ Take a look at the design [here](docs/design.md).
 A representation of the interactions among the components in a conversation flow can be found [here](docs/swimlane.jpg).
 
 ## Setting up an account in the NiceDay alpha app
-1. Download the NiceDay alpha version on your phone. 
-2. Open the downloaded app and create a client account. 
-This can be with the same credentials as for the normal NiceDay app.
-3. Login to the downloaded app on your phone with the account you just created.
-4. Send a connection request to the "PerfectFitTherapist Test"-therapist from the app.
-5. Login to the therapist account on https://alpha.niceday.app/ and accept the connection request from the client.
+1. Ask any of this project's contributors to request an invitation for installing NiceDay alpha version
+2. Download and install the NiceDay alpha version on your phone using the link in the invitation email
+3. Open the downloaded app and create a client account. 
+This is the account you will use to test functionality in the app and talk to the virtual coach.
+It is possible to use the same credentials for both the alpha and normal NiceDay app.
+NB: In the creation process, select "I want to use the app independently" when asked.
+4. Login to the downloaded app on your phone with the account you just created.
+5. Ask any of the project's contributors to provide you with a personal development 'Virtual Test Therapist' account.
+The virtual coach system will use this account.
+6. Send a connection request to your 'Virtual Test Therapist' account from the app:
+Go to the 'support' panel in the app. Click on the '+' symbol at the top right of the panel.
+Search for the name of the therapist account you want to connect with. Send a connection request.
+7. Login with the therapist account credentials on https://alpha.niceday.app/
+and accept the connection request from the client account.
 
 ## Setup
 1. Create a file called `.env` in the root of this app.
