@@ -25,6 +25,7 @@ A representation of the interactions among the components in a conversation flow
 3. Open the downloaded app and create a client account. 
 This is the account you will use to test functionality in the app and talk to the virtual coach.
 It is possible to use the same credentials for both the alpha and normal NiceDay app.
+NB: In the creation process, select "I want to use the app independently" when asked.
 4. Login to the downloaded app on your phone with the account you just created.
 5. Ask any of the project's contributors to provide you with a personal development 'Virtual Test Therapist' account.
 The virtual coach system will use this account.
