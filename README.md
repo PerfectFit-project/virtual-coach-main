@@ -50,6 +50,13 @@ NB: If you get a problem about "subdir not supported" during execution of `scrip
 set the buildkit feature to false in Docker. 
 On Windows, you can do this in Docker Desktop>Settings>Build engine.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
+
+### Configuration
+Configure functionality depending on the deployment environment by setting the `ENVIRONMENT` variable in your `.env` file. 
+Possible values are ('prod', 'test', 'dev')
+This will:
+   - toggle whether you want to have a delay in between messages ('prod'), or not ('test', 'dev').
+
 ## Test
 
 To run the tests, Node.js has to be installed, using [the installer](https://nodejs.org/en/download/).
