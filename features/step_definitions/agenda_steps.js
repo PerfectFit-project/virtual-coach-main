@@ -249,8 +249,10 @@ Then('therapist responds by confirming the later choice', function (callback) {
 });
 
 Then('therapist asks when to reschedule the exercise', function (callback) {
-	var now = new Date();
-	var current_hour = now.getHours()
+	
+	// Get current hour in timezone
+	var current_hour_str = new Date().toLocaleString("en-US", {timeZone: context.constants.TIMEZONE, hour:'2-digit', hour12:false})
+	var current_hour = parseInt(current_hour_str)
 	
 	if (current_hour < context.constants.NIGHT_END){
     verifyRasaResponse(context.constants.EXPECTED_WHEN_RESCHEDULE_NIGHT, callback);
