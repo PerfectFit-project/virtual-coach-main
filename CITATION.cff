@@ -1,0 +1,57 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: PerfectFit
+message: Please cite this software using these metadata.
+type: software
+authors:
+  - given-names: Sven
+    family-names: van der Burg
+    email: s.vanderburg@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+  - given-names: Walter
+    family-names: Baccinelli
+    email: w.baccinelli@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+    orcid: 'https://orcid.org/0000-0001-8888-4792'
+  - given-names: Robin
+    family-names: Richardson
+    email: r.richardson@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+  - given-names: Bouke
+    family-names: Scheltinga
+    email: b.scheltinga@rrd.nl
+    affiliation: University of Twente
+  - given-names: Nele
+    family-names: Albers
+    affiliation: Delft University of Technology
+    email: n.albers@tudelft.nl
+  - given-names: Djura
+    family-names: Smits
+    email: d.smits@esciencecenter.nl
+    affiliation: Netherlands eScience center
+  - given-names: Cunliang
+    family-names: Geng
+    email: c.geng@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+  - given-names: Willem-Paul
+    family-names: Brinkman
+    email: W.P.Brinkman@tudelft.nl
+    affiliation: Delft University of Technology
+  - given-names: Jasper
+    family-names: Reenalda
+    affiliation: University of Twente
+    email: J.Reenalda@rrd.nl
+  - given-names: Eline
+    family-names: Meijer
+    email: E.Meijer@lumc.nl
+    affiliation: Leiden University Medical Center
+  - given-names: Lars
+    family-names: Ridder
+    email: l.ridder@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.6472297
+license: Apache-2.0
