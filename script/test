@@ -1,8 +1,36 @@
-#!/bin/bash
+RASA_UP_PATTERN='Rasa server is up and running.'
+MAX_TIME=60
+TIME_COUNTER=0
+
+#!/bin/bashcd
 npm install
 script/bootstrap
 docker-compose up -d
 
-#TODO: Make this start when all containers fully up and healthy
-sleep 30
+#wait for all the containers to be running and the db to be populated
+until ("$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_server_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_api_1)"  && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_broker_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_actions_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_db_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_redis_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_scheduler_1)" && test "$(docker container inspect -f '{{.State.ExitCode}}' virtual-coach-main_manage_db_1)" = 0); do
+
+    sleep 1 
+	
+	TIME_COUNTER=$((TIME_COUNTER+1))
+	if (( TIME_COUNTER > MAX_TIME ))
+	then
+		echo "Timeout in launching containers"
+		exit 1
+	fi
+done
+
+#wait for rasa server to be ready
+until [[ "$(docker logs -n 1 virtual-coach-main_rasa_server_1 2>&1)" == *"$RASA_UP_PATTERN"* ]]; do
+    
+	sleep 1 
+	
+	TIME_COUNTER=$((TIME_COUNTER+1))
+	if (( TIME_COUNTER > MAX_TIME ))
+	then
+		echo "Timeout in starting Rasa server"
+		exit 1
+	fi
+done
+
 script/cucumber
