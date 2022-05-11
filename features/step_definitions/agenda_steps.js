@@ -234,7 +234,9 @@ Then('therapist says the exercise name', function (callback) {
 			verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
 		} else{
 			verifyRasaResponseMultiple(context.constants.EXPECTED_EXERCISE_NAME_REPEATED, callback);
+		}
 	  }
+  })
 });
 
 Then('therapist says the exercise duration', function (callback) {
@@ -296,7 +298,17 @@ Then('therapist explains the future self dialog', function (callback) {
 });
 
 Then('therapist asks which kind of smoker the user is', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
+  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+      if (err) {
+        callback('DB reading error')
+      } else {
+		if (res.length < 1){
+			verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
+		} else{
+			verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER_REPEATED, callback);
+		}
+	  }
+  })
 });
 
 Then('therapist shows the smoking words list', function (callback) {
@@ -364,7 +376,17 @@ Then('therapist introduces current mover', function (callback) {
 });
 
 Then('therapist introduces current mover words list', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
+  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+      if (err) {
+        callback('DB reading error')
+      } else {
+		if (res.length < 1){
+			verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
+		} else{
+			verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION_REPETITION, callback);
+		}
+	  }
+  })
 });
 
 Then('therapist shows current mover words list', function (callback) {
