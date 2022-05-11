@@ -225,7 +225,16 @@ Then('therapist introduces the exercise', function (callback) {
 });
 
 Then('therapist says the exercise name', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
+  
+  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+      if (err) {
+        callback('DB reading error')
+      } else {
+		if (res.length < 1){
+			verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
+		} else{
+			verifyRasaResponseMultiple(context.constants.EXPECTED_EXERCISE_NAME_REPEATED, callback);
+	  }
 });
 
 Then('therapist says the exercise duration', function (callback) {
