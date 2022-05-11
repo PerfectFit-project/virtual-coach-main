@@ -225,12 +225,11 @@ Then('therapist introduces the exercise', function (callback) {
 });
 
 Then('therapist says the exercise name', function (callback) {
-  
-  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
       if (err) {
-        callback('DB reading error')
+        callback('DB reading error' + err)
       } else {
-		if (res.length < 1){
+		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
 		} else{
 			verifyRasaResponseMultiple(context.constants.EXPECTED_EXERCISE_NAME_REPEATED, callback);
@@ -298,11 +297,11 @@ Then('therapist explains the future self dialog', function (callback) {
 });
 
 Then('therapist asks which kind of smoker the user is', function (callback) {
-  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
       if (err) {
-        callback('DB reading error')
+        callback('DB reading error' + err)
       } else {
-		if (res.length < 1){
+		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
 		} else{
 			verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER_REPEATED, callback);
@@ -328,7 +327,7 @@ Then('therapist asks confirmation of the words', function (callback) {
 });
 
 Then('the smoker words are stored in the DB', function (callback) {
-     context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
       if (err) {
         callback('DB reading error')
       } else {
@@ -338,7 +337,7 @@ Then('the smoker words are stored in the DB', function (callback) {
         assert(res.rows[0]['answer']==context.constants.SELECTED_SMOKER_WORDS);
         callback();
       }
-     })
+  })
 });
 
 Then('therapist says good', function (callback) {
@@ -376,11 +375,11 @@ Then('therapist introduces current mover', function (callback) {
 });
 
 Then('therapist introduces current mover words list', function (callback) {
-  context.client.query('SELECT * FROM user_intervention_state where users_nicedayuid = context.user_id and intervention_component = future_self_dialog', (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
       if (err) {
-        callback('DB reading error')
+        callback('DB reading error' + err)
       } else {
-		if (res.length < 1){
+		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
 		} else{
 			verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION_REPETITION, callback);

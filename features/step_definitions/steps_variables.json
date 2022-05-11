@@ -31,8 +31,7 @@
 									  "Deze oefening noemen we 'wie wil ik straks zijn.' Je hebt de oefening al een keer gedaan. Het wordt makkelijker je doelen te halen als je hem nog een keer doet. ...",
 									  "De naam van de oefening is 'wie wil ik straks zijn.' Je hebt deze oefening al eens eerder gedaan. Juist door herhaling gaat deze oefening je helpen. ...",
 									  "De naam van de oefening is 'wie wil ik straks zijn.' Door deze oefening te herhalen wordt het makkelijker je doelen te behalen. ...",
-									  "De naam van de oefening is 'wie wil ik straks zijn.' Je hebt de oefening al een keer gedaan. Het wordt makkelijker je doelen te halen als je hem nog een keer doet. ...",
-							]
+									  "De naam van de oefening is 'wie wil ik straks zijn.' Je hebt de oefening al een keer gedaan. Het wordt makkelijker je doelen te halen als je hem nog een keer doet. ..."],
   "EXPECTED_EXERCISE_DURATION": "15 minuten",
   "EXPECTED_AT_ONCE": "Het is belangrijk",
   "EXPECTED_NOW_OR_LATER": "Wil jij deze oefening nu doen of later?",
@@ -54,7 +53,7 @@
   "EXPECTED_CONFIRM_TIME": "Prima, ik kom dan bij je terug",
   "EXPECTED_FUTURE_SELF_EXPLANATION": "Deze oefening gaat je op weg helpen om te stoppen met roken en genoeg te bewegen",
   "EXPECTED_WHAT_SMOKER": "Eerst kijken wij wat voor roker jij op dit moment bent. Ik laat je zo een lijst met woorden zien.\n Welke woorden passen bij jou als roker?\n Roken is ...",
-  "EXPECTED_WHAT_SMOKER_REPEATED": "De vorige keer zei je dit over roken:"
+  "EXPECTED_WHAT_SMOKER_REPEATED": "De vorige keer zei je dit over roken:",
   "EXPECTED_SMOKING_WORDS_LIST": "Fijn - lekker - eng",
   "EXPECTED_PICK_WORDS_REQUEST": "Kies 3 tot 5 woorden uit de lijst en typ ze in de chat",
   "EXPECTED_UTTER_GOOD": ["Mooi. ...",
