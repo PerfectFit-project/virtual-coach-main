@@ -12,9 +12,6 @@ until ("$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_ra
 
     sleep 1 
 
-	# Populate the database with test data
-	docker exec manage_db python3 ../helper/populate_db.py
-
 	TIME_COUNTER=$((TIME_COUNTER+1))
 	if (( TIME_COUNTER > MAX_TIME ))
 	then
