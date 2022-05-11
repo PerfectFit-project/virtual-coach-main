@@ -11,7 +11,10 @@ docker-compose up -d
 until ("$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_server_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_api_1)"  && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_broker_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_actions_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_db_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_redis_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_scheduler_1)" && test "$(docker container inspect -f '{{.State.ExitCode}}' virtual-coach-main_manage_db_1)" = 0); do
 
     sleep 1 
-	
+
+	# Populate the database with test data
+	docker exec manage_db python3 ../helper/populate_db.py
+
 	TIME_COUNTER=$((TIME_COUNTER+1))
 	if (( TIME_COUNTER > MAX_TIME ))
 	then
