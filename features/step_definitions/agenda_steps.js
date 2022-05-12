@@ -371,7 +371,7 @@ Then('the smoker words answer is stored in the DB', function (callback) {
 });
 
 Then('therapist introduces current mover', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_INTRODUCTION, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_CURRENT_MOVER_INTRODUCTION, callback);
 });
 
 Then('therapist introduces current mover words list', function (callback) {
