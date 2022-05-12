@@ -229,6 +229,7 @@ Then('therapist says the exercise name', function (callback) {
       if (err) {
         callback('DB reading error' + err)
       } else {
+		console.log('Number of rows for future self dialog for user in user intervention state:', res.rows.length)
 		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
 		} else{
@@ -301,6 +302,7 @@ Then('therapist asks which kind of smoker the user is', function (callback) {
       if (err) {
         callback('DB reading error' + err)
       } else {
+		console.log('Number of rows for future self dialog for user in user intervention state:', res.rows.length)
 		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
 		} else{
@@ -379,6 +381,7 @@ Then('therapist introduces current mover words list', function (callback) {
       if (err) {
         callback('DB reading error' + err)
       } else {
+		console.log('Number of rows for future self dialog for user in user intervention state:', res.rows.length)
 		if (res.rows.length < 1){
 			verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
 		} else{
