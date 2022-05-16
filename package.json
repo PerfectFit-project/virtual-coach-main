@@ -2,6 +2,7 @@
   "dependencies": {
     "@sense-os/goalie-js": "github:senseobservationsystems/goalie-js#v0.39.2",
     "cucumber": "^7.0.0-rc.0",
+    "dotenv": "^16.0.1",
     "isomorphic-fetch": "^3.0.0",
     "pg": "^8.7.3"
   }

@@ -6,7 +6,6 @@
   "DB_NAME": "perfectfit",
   "DB_PASSWORD": "root",
   "DB_PORT": 5432,
-  "THERAPIST_ID": "38714",
   "USERNAME": "walter.baccinelli@gmail.com",
   "USER_PSW": "Thisisatest1!",
   "USER_NAME": "User",
