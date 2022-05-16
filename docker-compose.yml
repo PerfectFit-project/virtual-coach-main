@@ -19,7 +19,9 @@ services:
       - .env
 
   rasa_server:
-    image: rasa_server_local
+    build:
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      dockerfile: Dockerfile.rasa_server
     ports:
       - 5005:5005
     expose: ["5005"]
@@ -50,7 +52,9 @@ services:
 # Niceday components depend on 'goalie-js', which is a private repository.
 # Thus, we cannot directly build it from github, so we build it from the cloned repository.
   niceday_broker:
-    image: niceday_broker_local
+    build:
+      context: ./build/niceday-components/niceday-broker
+      dockerfile: Dockerfile.niceday_broker
     env_file:
       - .env
 
