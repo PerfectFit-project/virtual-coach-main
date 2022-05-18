@@ -7,6 +7,11 @@ var fs = require('fs');
 
 var {setDefaultTimeout} = require('@cucumber/cucumber');
 
+// Read in environment variables from .env file
+require('dotenv').config();
+
+const { THERAPIST_ID } = process.env;
+
 setDefaultTimeout(20000); //increase the timeout
 
 let context = {};
@@ -25,7 +30,7 @@ const chatSdk = new Chat();
 chatSdk.init(SenseServerEnvironment.Alpha);
 
 function sendPatientMsg(txt, callback){
-   chatSdk.sendTextMessage(context.constants.THERAPIST_ID, txt)
+   chatSdk.sendTextMessage(THERAPIST_ID, txt)
   .then(response => {
     context.patient_message_response = response;
     callback();
@@ -119,7 +124,7 @@ When('we ask for the agenda', function (callback) {
 Then('the message is addressed to the therapist', function (callback) {
   assert(context.hasOwnProperty("patient_message_response"));
   assert(context.patient_message_response.hasOwnProperty('to'));
-  assert(context.patient_message_response['to'] == context.constants.THERAPIST_ID);
+  assert(context.patient_message_response['to'] == THERAPIST_ID);
   callback();
 });
 
