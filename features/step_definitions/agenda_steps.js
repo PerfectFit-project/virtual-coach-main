@@ -225,7 +225,9 @@ Then('therapist introduces the exercise', function (callback) {
 });
 
 Then('therapist says the exercise name', function (callback) {
-  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
+					   [context.user_id, "future_self_dialog"], 
+					   (err, res) => {
       if (err) {
         callback('DB reading error' + err)
       } else {
@@ -298,7 +300,9 @@ Then('therapist explains the future self dialog', function (callback) {
 });
 
 Then('therapist asks which kind of smoker the user is', function (callback) {
-  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
+                       [context.user_id, "future_self_dialog"], 
+					   (err, res) => {
       if (err) {
         callback('DB reading error' + err)
       } else {
@@ -377,9 +381,11 @@ Then('therapist introduces current mover', function (callback) {
 });
 
 Then('therapist introduces current mover words list', function (callback) {
-  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', [context.user_id, "future_self_dialog"], (err, res) => {
+  context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
+                       [context.user_id, "future_self_dialog"], 
+					   (err, res) => {
       if (err) {
-        callback('DB reading error' + err)
+        callback('DB reading error: ' + err)
       } else {
 		console.log('Number of rows for future self dialog for user in user intervention state:', res.rows.length)
 		if (res.rows.length < 1){
