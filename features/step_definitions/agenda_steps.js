@@ -58,6 +58,24 @@ function verifyRasaResponseMultiple(expected_response, callback){
   callback();
 }
 
+function isFutureSelfRepetition(callback){
+	context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
+					     [context.user_id, "future_self_dialog"], 
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+		console.log('Number of rows for future self dialog for user in user intervention state:', res.rows.length)
+		// Number of rows indicates whether the user has done the future self dialog before
+		var repetition = 1;
+		if (res.rows.length < 1){
+			repetition = 0;
+		} 
+		callback(null, repetition);
+	  }
+    })
+}
+
 Given('rasa bot is up and running', function (callback) {
 
   fetch(context.constants.RASA_URL, {
@@ -230,7 +248,20 @@ Then('therapist introduces the exercise', function (callback) {
 });
 
 Then('therapist says the exercise name', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
+	
+	// Check if user has done future self dialog before based on database
+	isFutureSelfRepetition( (err, repetition) => {
+		if (err){
+			callback("Error: " + err);
+		}
+		else{
+			if (repetition===0){
+				verifyRasaResponse(context.constants.EXPECTED_EXERCISE_NAME, callback);
+			} else{
+				verifyRasaResponseMultiple(context.constants.EXPECTED_EXERCISE_NAME_REPEATED, callback);
+			}
+		}
+	})
 });
 
 Then('therapist says the exercise duration', function (callback) {
@@ -292,7 +323,20 @@ Then('therapist explains the future self dialog', function (callback) {
 });
 
 Then('therapist asks which kind of smoker the user is', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
+	
+	// Check if user has done future self dialog before based on database
+	isFutureSelfRepetition( (err, repetition) => {
+		if (err){
+			callback("Error: " + err);
+		}
+		else{
+			if (repetition===0){
+				verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER, callback);
+			} else{
+				verifyRasaResponse(context.constants.EXPECTED_WHAT_SMOKER_REPEATED, callback);
+			}
+		}
+	})
 });
 
 Then('therapist shows the smoking words list', function (callback) {
@@ -312,7 +356,7 @@ Then('therapist asks confirmation of the words', function (callback) {
 });
 
 Then('the smoker words are stored in the DB', function (callback) {
-     context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
+  context.client.query('SELECT * FROM dialog_answers order by answer_id desc limit 1', (err, res) => {
       if (err) {
         callback('DB reading error')
       } else {
@@ -322,7 +366,7 @@ Then('the smoker words are stored in the DB', function (callback) {
         assert(res.rows[0]['answer']==context.constants.SELECTED_SMOKER_WORDS);
         callback();
       }
-     })
+  })
 });
 
 Then('therapist says good', function (callback) {
@@ -356,11 +400,24 @@ Then('the smoker words answer is stored in the DB', function (callback) {
 });
 
 Then('therapist introduces current mover', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_INTRODUCTION, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_CURRENT_MOVER_INTRODUCTION, callback);
 });
 
 Then('therapist introduces current mover words list', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
+  
+	// Check if user has done future self dialog before based on database
+	isFutureSelfRepetition( (err, repetition) => {
+		if (err){
+			callback("Error: " + err);
+		}
+		else{
+			if (repetition === 0){
+				verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION, callback);
+			} else{
+				verifyRasaResponse(context.constants.EXPECTED_CURRENT_MOVER_LIST_INTRODUCTION_REPETITION, callback);
+			}
+		}
+	});
 });
 
 Then('therapist shows current mover words list', function (callback) {
