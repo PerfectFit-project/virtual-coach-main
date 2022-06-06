@@ -180,7 +180,17 @@ Then('therapist response is found to be addressed to the user', function(callbac
 });
 
 Then('first aid kit is printed', function(callback){
-  verifyRasaResponse(context.constants.FIRST_AID_KIT_PRINT, callback);
+  context.client.query('SELECT * FROM first_aid_kit WHERE users_nicedayuid = $1', [context.user_id], (err, res) => {
+      if (err) {
+        callback('DB reading error')
+      } else{
+		if (res.rows.length > 0){
+			verifyRasaResponse(context.constants.FIRST_AID_KIT_PRINT, callback);
+		} else{
+			verifyRasaResponse(context.constants.FIRST_AID_KIT_EMPTY, callback);
+		}
+	  }
+  })
 });
 
 Then('advice on running distance is given', function (callback) {

@@ -75,6 +75,7 @@
   "RESTART_COMMAND": "/restart",
   "ASK_FIRSTAIDKIT": "Ik wil first aid kit",
   "FIRST_AID_KIT_PRINT": "Hier is je EHBO doos",
+  "FIRST_AID_KIT_PEMPTY": "Je hebt niets in je EHBO doos.",
   "ASK_AGENDA": "Kan ik de agenda voor de week krijgen?",
   "YES_RESPONSE": "Ja",
   "USER_GREETINGS": "Hi",

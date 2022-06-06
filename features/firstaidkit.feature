@@ -2,6 +2,7 @@ Feature: First aid kit
 
   Scenario: Get first aid kit
      Given rasa bot is up and running
+	   And the connection to the database is successful
       When user is authenticated
       Then test user is connected
        And the conversation is restarted
