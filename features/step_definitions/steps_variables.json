@@ -73,6 +73,8 @@
   "EXPECTED_CHOOSE_OPTION": "Kies de optie die het meeste bij je past en typ het nummer in de chat",
   "EXPECTED_FIJN": "Fijn",
   "RESTART_COMMAND": "/restart",
+  "ASK_FIRSTAIDKIT": "Ik wil first aid kit",
+  "FIRST_AID_KIT_PRINT": "Hier is je EHBO doos",
   "ASK_AGENDA": "Kan ik de agenda voor de week krijgen?",
   "YES_RESPONSE": "Ja",
   "USER_GREETINGS": "Hi",
