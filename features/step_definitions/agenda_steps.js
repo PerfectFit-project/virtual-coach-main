@@ -135,6 +135,10 @@ Then('the conversation is restarted', function (callback) {
  sendPatientMsg(context.constants.RESTART_COMMAND, callback);
 });
 
+When('we ask for the first aid kit', function (callback) {
+  sendPatientMsg(context.constants.ASK_FIRSTAIDKIT, callback);
+});
+
 When('we ask for the agenda', function (callback) {
   sendPatientMsg(context.constants.ASK_AGENDA, callback);
 });
@@ -173,6 +177,20 @@ Then('therapist response is found to be addressed to the user', function(callbac
   assert(context.therapist_response.hasOwnProperty('to'));
   assert(context.therapist_response['to'] == context.user_id);
   callback();
+});
+
+Then('first aid kit is printed', function(callback){
+  context.client.query('SELECT * FROM first_aid_kit WHERE users_nicedayuid = $1', [context.user_id], (err, res) => {
+      if (err) {
+        callback('DB reading error')
+      } else{
+		if (res.rows.length > 0){
+			verifyRasaResponse(context.constants.FIRST_AID_KIT_PRINT, callback);
+		} else{
+			verifyRasaResponse(context.constants.FIRST_AID_KIT_EMPTY, callback);
+		}
+	  }
+  })
 });
 
 Then('advice on running distance is given', function (callback) {
