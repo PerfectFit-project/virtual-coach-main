@@ -36,7 +36,8 @@ and accept the connection request from the client account.
 
 ## Setup
 1. Create a file called `.env` in the root of this app.
-Save the therapist email address and password in your `.env` file as THERAPIST_EMAIL_ADDRESS and THERAPIST_PASSWORD, respectively.
+Save the therapist email address, password and ID in your `.env` file as THERAPIST_EMAIL_ADDRESS, THERAPIST_PASSWORD and THERAPIST_ID, respectively. 
+How to get the ID is explained [here](https://github.com/PerfectFit-project/niceday-components/tree/main/niceday-api#what-is-my-user-id). 
 The .env file must also contain `DATABASE_URL`, which points to the location of the perfectfit database on a running postgres server.
 For local development this will normally be: `postgresql+psycopg2://root:root@db/perfectfit`
 See .env-example for a template. The values in `.env-example` are already set to work for local runs with docker compose (with the exception of THERAPIST_EMAIL_ADDRESS, THERAPIST_ID and THERAPIST_PASSWORD, which must be provided).
