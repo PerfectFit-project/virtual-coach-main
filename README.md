@@ -52,7 +52,7 @@ set the buildkit feature to false in Docker.
 On Windows, you can do this in Docker Desktop>Settings>Build engine.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 
-NB: On Windows, make sure that core.autocrlf for git is set to false.
+NB: On Windows, make sure that core.autocrlf for git is set to false, by running : `git config --global core.autocrlf false`
 
 ### Configuration
 Configure functionality depending on the deployment environment by setting the `ENVIRONMENT` variable in your `.env` file. 
