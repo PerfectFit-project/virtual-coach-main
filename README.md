@@ -49,7 +49,7 @@ Run `script/server` script to serve the application.
 
 NB: If you get a problem about "subdir not supported" during execution of `script/server`, 
 set the buildkit feature to false in Docker. 
-On Windows, you can do this in Docker Desktop>Settings>Build engine.
+On Windows, you can do this in Docker Desktop>Settings>Build engine. In addition, make sure that "Use Docker Compose V2" in the General settings in Docker Desktop is not selected.
 On Mac, you can do this in Docker Desktop>Preferences>Docker Engine. Edit the displayed JSON so that `"buildkit": false`, then restart Docker Desktop.
 
 NB: On Windows, make sure that core.autocrlf for git is set to false, by running : `git config --global core.autocrlf false`
