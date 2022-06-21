@@ -205,26 +205,6 @@ Then('therapist responds by greeting the user using the correct name', function 
   verifyRasaResponse(context.constants.USER_NAME, callback);
 });
 
-Then('therapist asks for the user mood', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_MOOD_QUESTION, callback);
-});
-
-When('users responds with positive mood', function (callback) {
-  sendPatientMsg(context.constants.POSITIVE_MOOD, callback);
-});
-
-When('users responds with negative mood', function (callback) {
-   sendPatientMsg(context.constants.NEGATIVE_MOOD, callback);
-});
-
-Then('therapist congratulates', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_POSITIVE_MOOD_RESPONSE, callback);
-});
-
-Then('therapist is sorry', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_NEGATIVE_MOOD_RESPONSE, callback);
-});
-
 When('users asks for consumed cigarettes', function (callback) {
   sendPatientMsg(context.constants.REQUEST_CIGARETTES_NUMBER, callback);
 });
