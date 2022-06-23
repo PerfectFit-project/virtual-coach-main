@@ -59,7 +59,7 @@ function verifyRasaResponseMultiple(expected_response, callback){
 }
 
 function isFutureSelfRepetition(callback){
-	context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
+	context.client.query('SELECT * FROM user_intervention_state INNER JOIN intervention_components ON user_intervention_state.intervention_component_id = intervention_components.intervention_component_id WHERE user_intervention_state.users_nicedayuid = $1 AND intervention_components.intervention_component_name = $2',
 					     [context.user_id, "future_self_dialog"], 
 					     (err, res) => {
       if (err) {
