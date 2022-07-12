@@ -140,3 +140,7 @@ dbschema/
 
 
 node_modules/
+
+
+# Ansible
+inventory

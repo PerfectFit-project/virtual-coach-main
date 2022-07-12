@@ -1,0 +1,64 @@
+---
+- name: Install docker
+  hosts: prod
+  user: root
+  tasks:
+    - name: Install prerequisites for apt
+      apt:
+        update_cache: yes
+        pkg:
+          - aptitude
+          - apt-transport-https
+
+    - name: Install prerequisites for docker
+      apt:
+        update_cache: yes
+        pkg:
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+
+    - name: Add key from docker
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Print out host architecture
+      debug:
+        msg: "Architecture detected: {{ansible_architecture}}"
+
+    - name: Add docker repository
+      when: ansible_architecture == "x86_64"
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+
+    - name: Install docker CE
+      apt:
+        update_cache: yes
+        pkg:
+          - docker-ce
+- name: Install docker-compose
+  hosts: prod
+  user: root
+  tasks:
+      - name: Create docker plugins directory
+        file:
+          path: ~/.docker/cli-plugins/
+          state: directory
+
+      - name: Download docker compose binary and set to executable
+        ansible.builtin.get_url:
+          url: https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64
+          dest: ~/.docker/cli-plugins/docker-compose
+          mode: '755'
+
+      - name: Get docker compose version
+        shell: 'docker compose version'
+        register: command_output
+
+      - name: Print out docker compose version
+        debug:
+          var: command_output.stdout_lines
+
+
