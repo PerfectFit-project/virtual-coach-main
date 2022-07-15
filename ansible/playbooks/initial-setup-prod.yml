@@ -60,5 +60,3 @@
       - name: Print out docker compose version
         debug:
           var: command_output.stdout_lines
-
-
