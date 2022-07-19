@@ -1,0 +1,24 @@
+---
+- name: Install docker
+  hosts: stage
+  user: root
+  tasks:
+    - name: Copy .env for staging
+      ansible.builtin.copy:
+        src: ../.env.stage
+        dest: ~/.env.stage
+        mode: '0644'
+    - name: Copy private package token
+      ansible.builtin.copy:
+        src: ../SECRET_read_private_packages_token
+        dest: ~/SECRET_read_private_packages_token
+        mode: '0644'
+    - name: Copy docker compose staging yml
+      ansible.builtin.copy:
+        src: ../stage/docker-compose.stage.yml
+        dest: ~/docker-compose.stage.yml
+        mode: '0644'
+    - name: Log into docker ghcr
+      shell: cat SECRET_read_private_packages_token | docker login ghcr.io -u USERNAME --password-stdin
+    - name: Start docker compose
+      shell: 'docker compose -f docker-compose.stage.yml up -d'
