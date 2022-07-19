@@ -145,3 +145,4 @@ node_modules/
 
 # Ansible
 inventory
+SECRET_*
