@@ -27,7 +27,19 @@ ansible stage -i inventory -m ping -u root
 If this is successful, then your inventory file is correctly set up.
 
 ## Setting up the staging and production servers
+Now you can run the `initial-setup.yml` playbook, which installs docker, docker-compose and the general config environment on both the prod and stage servers defined in your `inventory` file. Run the notebook as follows:
 
 ```
-ansible-playbook -i inventory playbooks/initial-setup-prod.yml
+ansible-playbook -i inventory playbooks/initial-setup.yml
+```
+
+## Spinning up (and updating) the staging server
+To spin up the whole virtual coach app on the staging server, you must use the `start-stage.yml` playbook. Note that this playbook looks for a couple of files, that must be present in the /ansible directory:
+* .env.stage : the .env file configured for the staging server
+* read_private_packages_token : a file containing a github personal access token giving access to the private packages (the niceday-api and niceday-broker images).
+These files are not under version control and must not be committed.
+
+Once the necessary secret containing files are present, run the following:
+```
+ansible-playbook -i inventory playbooks/start-stage.yml
 ```
