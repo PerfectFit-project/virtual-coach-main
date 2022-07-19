@@ -1,6 +1,6 @@
 ---
 - name: Install docker
-  hosts: prod
+  hosts: prod,stage
   user: root
   tasks:
     - name: Install prerequisites for apt
@@ -39,7 +39,7 @@
         pkg:
           - docker-ce
 - name: Install docker-compose
-  hosts: prod
+  hosts: prod,stage
   user: root
   tasks:
       - name: Create docker plugins directory
