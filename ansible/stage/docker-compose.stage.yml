@@ -1,0 +1,57 @@
+version: "3.0"  # orig 3.0
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: perfectfit
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+
+  manage_db:
+    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
+    tty: true
+    restart: on-failure
+    command: ["/app/utils/init-db.sh"]
+    env_file:
+      - .env.stage
+
+  rasa_server:
+    image: ghcr.io/perfectfit-project/rasa_server:issue172_design_deployment_process
+    ports:
+      - 5005:5005
+    expose: ["5005"]
+
+  rasa_actions:
+    image: ghcr.io/perfectfit-project/rasa_actions:issue172_design_deployment_process
+    expose: ["5055"]
+    env_file:
+      - .env.stage
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+
+  scheduler:
+    image: ghcr.io/perfectfit-project/scheduler:merge
+    depends_on:
+     - redis
+     - rasa_server
+    env_file:
+      - .env.stage
+
+  niceday_broker:
+    image: ghcr.io/perfectfit-project/niceday_broker:issue172_design_deployment_process
+    env_file:
+      - .env.stage
+
+  niceday_api:
+    image: ghcr.io/perfectfit-project/niceday_api:issue172_design_deployment_process
+    env_file:
+      - .env.stage
+    ports:
+      - 8080:8080
+    expose: ["8080"]
