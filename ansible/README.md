@@ -18,6 +18,8 @@ stage ansible_ssh_private_key_file=~/.ssh/privatekey_for_accessing_stage
 ansible_python_interpreter=/usr/bin/python3
 ```
 
+If you like, you can copy the `inventory.example` file (also in the ansible directory) and change the values to fit your case.
+
 Once you have created this `inventory` file, with the actual relevant IP addresses and key locations, you can test if your configuration works by pinging the prod and stage servers:
 ```
 ansible prod -i inventory -m ping -u root
