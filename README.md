@@ -128,3 +128,7 @@ NB: The database is saved automatically by docker. To empty the volume that stor
 docker compose down --volumes
 ```
 Next time you run the application the database will be reinitialized.
+
+
+### Deployment to cloud
+For deployment of the virtual coach to cloud, please read the instructions in the [README in the ansible/ directory](https://github.com/PerfectFit-project/virtual-coach-main/blob/main/ansible/README.md) of this repository.
