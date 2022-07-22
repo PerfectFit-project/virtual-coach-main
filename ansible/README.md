@@ -39,7 +39,7 @@ ansible-playbook -i inventory playbooks/initial-setup.yml
 To spin up the whole virtual coach app on the staging server, you must use the `start-stage.yml` playbook. Note that this playbook looks for a couple of files, that must be present in the /ansible directory:
 * .env.stage : the .env file configured for the staging server
 * read_private_packages_token : a file containing a github personal access token giving access to the private packages (the niceday-api and niceday-broker images).
-These files are not under version control and must not be committed.
+These files are not under version control and must not be committed. There is a `.env.stage.example` file you to show you the form of file expected here.
 
 Once the necessary secret containing files are present, run the following:
 ```
@@ -50,6 +50,7 @@ ansible-playbook -i inventory playbooks/start-stage.yml
 Starting the perfectfit app on the production server is achieved by running the `start-prod.yml` playbook. Similarly to the staging case, this requires two files to be present in the ansible directory (that are not and must not be under version control):
 * .env.prod : the .env file configured for the production server
 * read_private_packages_token : a file containing a github personal access token giving access to the private packages (the niceday-api and niceday-broker images).
+There is a `.env.prod.example` file you to show you the form of file expected here.
 
 You then spin up a particular release on the prod server as follows:
 ```
