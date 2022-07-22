@@ -19,13 +19,13 @@ services:
       - .env.stage
 
   rasa_server:
-    image: ghcr.io/perfectfit-project/rasa_server:issue172_design_deployment_process
+    image: ghcr.io/perfectfit-project/rasa_server:latest
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    image: ghcr.io/perfectfit-project/rasa_actions:issue172_design_deployment_process
+    image: ghcr.io/perfectfit-project/rasa_actions:latest
     expose: ["5055"]
     env_file:
       - .env.stage
@@ -36,7 +36,7 @@ services:
       - 6379:6379
 
   scheduler:
-    image: ghcr.io/perfectfit-project/scheduler:merge
+    image: ghcr.io/perfectfit-project/scheduler:latest
     depends_on:
      - redis
      - rasa_server
@@ -44,12 +44,12 @@ services:
       - .env.stage
 
   niceday_broker:
-    image: ghcr.io/perfectfit-project/niceday_broker:issue172_design_deployment_process
+    image: ghcr.io/perfectfit-project/niceday_broker:latest
     env_file:
       - .env.stage
 
   niceday_api:
-    image: ghcr.io/perfectfit-project/niceday_api:issue172_design_deployment_process
+    image: ghcr.io/perfectfit-project/niceday_api:latest
     env_file:
       - .env.stage
     ports:
