@@ -1,3 +1,6 @@
+# Deployment of PerfectFit virtual coach to cloud
+The following describes the current tools and process for deploying the virtual coach to VMs, most likely provisioned via some cloud service provider.
+
 ## Install Ansible
 First you must install ansible on the machine you wish to administer the servers from. This is probably your laptop or other local machine.
 
