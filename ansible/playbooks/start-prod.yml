@@ -1,0 +1,24 @@
+---
+- name: Install docker
+  hosts: prod
+  user: root
+  tasks:
+    - name: Copy .env for staging
+      ansible.builtin.copy:
+        src: ../.env.prod
+        dest: ~/.env.prod
+        mode: '0644'
+    - name: Copy private package token
+      ansible.builtin.copy:
+        src: ../SECRET_read_private_packages_token
+        dest: ~/SECRET_read_private_packages_token
+        mode: '0644'
+    - name: Copy docker compose production yml
+      ansible.builtin.copy:
+        src: ../prod/docker-compose.prod.yml
+        dest: ~/docker-compose.prod.yml
+        mode: '0644'
+    - name: Log into docker ghcr
+      shell: cat SECRET_read_private_packages_token | docker login ghcr.io -u USERNAME --password-stdin
+    - name: Start docker compose
+      shell: "RELEASETAG={{ RELEASETAG }} docker compose -f docker-compose.prod.yml up -d"

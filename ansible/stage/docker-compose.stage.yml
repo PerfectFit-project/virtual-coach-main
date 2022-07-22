@@ -16,21 +16,19 @@ services:
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
     env_file:
-      - .env
+      - .env.stage
 
   rasa_server:
-    build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+    image: ghcr.io/perfectfit-project/rasa_server:issue172_design_deployment_process
     ports:
       - 5005:5005
     expose: ["5005"]
 
   rasa_actions:
-    build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    image: ghcr.io/perfectfit-project/rasa_actions:issue172_design_deployment_process
     expose: ["5055"]
     env_file:
-      - .env
+      - .env.stage
 
   redis:
     image: "redis:alpine"
@@ -38,27 +36,22 @@ services:
       - 6379:6379
 
   scheduler:
-    build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
+    image: ghcr.io/perfectfit-project/scheduler:merge
     depends_on:
      - redis
      - rasa_server
     env_file:
-      - .env
+      - .env.stage
 
-# Niceday components depend on 'goalie-js', which is a private repository.
-# Thus, we cannot directly build it from github, so we build it from the cloned repository.
   niceday_broker:
-    build:
-      context: ./build/niceday-components/niceday-broker
+    image: ghcr.io/perfectfit-project/niceday_broker:issue172_design_deployment_process
     env_file:
-      - .env
+      - .env.stage
 
   niceday_api:
-    build:
-      context: ./build/niceday-components/niceday-api
+    image: ghcr.io/perfectfit-project/niceday_api:issue172_design_deployment_process
     env_file:
-      - .env
+      - .env.stage
     ports:
       - 8080:8080
     expose: ["8080"]
