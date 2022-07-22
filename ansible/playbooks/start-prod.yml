@@ -3,6 +3,9 @@
   hosts: prod
   user: root
   tasks:
+    - name: Print out release version user has chosen for production
+      debug:
+        msg: "Moving prod to version {{ RELEASETAG }}"
     - name: Copy .env for staging
       ansible.builtin.copy:
         src: ../.env.prod
