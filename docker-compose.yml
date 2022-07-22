@@ -21,7 +21,6 @@ services:
   rasa_server:
     build:
       context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
-      dockerfile: Dockerfile.rasa_server
     ports:
       - 5005:5005
     expose: ["5005"]
@@ -29,7 +28,6 @@ services:
   rasa_actions:
     build:
       context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
-      dockerfile: Dockerfile.rasa_actions
     expose: ["5055"]
     env_file:
       - .env
@@ -42,7 +40,6 @@ services:
   scheduler:
     build:
       context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:scheduler
-      dockerfile: Dockerfile.scheduler
     depends_on:
      - redis
      - rasa_server
@@ -54,14 +51,12 @@ services:
   niceday_broker:
     build:
       context: ./build/niceday-components/niceday-broker
-      dockerfile: Dockerfile.niceday_broker
     env_file:
       - .env
 
   niceday_api:
     build:
       context: ./build/niceday-components/niceday-api
-      dockerfile: Dockerfile.niceday_api
     env_file:
       - .env
     ports:
