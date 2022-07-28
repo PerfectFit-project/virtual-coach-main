@@ -7,8 +7,6 @@ services:
       POSTGRES_DB: perfectfit
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-    ports:
-      - "5432:5432"
 
   manage_db:
     build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
@@ -20,20 +18,14 @@ services:
 
   rasa_server:
     image: ghcr.io/perfectfit-project/rasa_server:$RELEASETAG
-    ports:
-      - 5005:5005
-    expose: ["5005"]
 
   rasa_actions:
     image: ghcr.io/perfectfit-project/rasa_actions:$RELEASETAG
-    expose: ["5055"]
     env_file:
       - .env.prod
 
   redis:
     image: "redis:alpine"
-    ports:
-      - 6379:6379
 
   scheduler:
     image: ghcr.io/perfectfit-project/scheduler:$RELEASETAG
@@ -52,6 +44,3 @@ services:
     image: ghcr.io/perfectfit-project/niceday_api:$RELEASETAG
     env_file:
       - .env.prod
-    ports:
-      - 8080:8080
-    expose: ["8080"]
