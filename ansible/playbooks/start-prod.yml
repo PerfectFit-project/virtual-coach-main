@@ -23,5 +23,9 @@
         mode: '0644'
     - name: Log into docker ghcr
       shell: cat SECRET_read_private_packages_token | docker login ghcr.io -u USERNAME --password-stdin
+    - name: Stop docker compose (if up)
+      shell: 'RELEASETAG={{ RELEASETAG }} docker compose -f docker-compose.prod.yml down --remove-orphans --rmi all -v'
+    - name: Prune containers and networks
+      shell: 'docker system prune -a -f'
     - name: Start docker compose
       shell: "RELEASETAG={{ RELEASETAG }} docker compose -f docker-compose.prod.yml up -d"
