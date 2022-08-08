@@ -15,7 +15,7 @@ Python package for interacting with the niceday-api component of the PerfectFit 
 Code around database for virtual coach system
 
 ## Citation
-Please cite this software based on the [the entry in zenodo](https://zenodo.org/record/6472297#.YvD69OxBw00)
+Please cite this software based on [the entry in zenodo](https://zenodo.org/record/6472297#.YvD69OxBw00)
 
 ## Software development planning
 See [software development planning document](https://nlesc.sharepoint.com/:w:/r/sites/team-flow/Shared%20Documents/PerfectFit/Perfect%20Fit%20-%20RFCs/PerfectFit-RFC-0007-software-development-planning.docx?d=w434661cbf10c458998e9e45ea6451ea4&csf=1&web=1&e=8cxoLW)
