@@ -44,6 +44,8 @@ function verifyRasaResponse(expected_response, callback){
   assert(context.hasOwnProperty("therapist_response"));
   assert(context.therapist_response.hasOwnProperty("content"));
   assert(context.therapist_response['content'].hasOwnProperty("TEXT"));
+  //console.log(context.therapist_response['content']['TEXT'])
+  //console.log(expected_response)
   if (context.therapist_response['content']['TEXT'].includes(expected_response)) {
     callback();
   }
@@ -531,4 +533,17 @@ Then('the dialog is concluded', function (callback) {
    .end()
    .then(() =>callback())
    .catch(err => callback(err));
+});
+
+// general activity
+When('user starts general activity dialog', function (callback) {
+  sendPatientMsg(context.constants.START_GENERAL_ACTIVITY, callback);
+});
+
+Then('therapist responds by greeting the user', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_GREETINGS, callback);
+});
+
+Then('therapist responds by asking a rating', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_ASK_RATING, callback);
 });
