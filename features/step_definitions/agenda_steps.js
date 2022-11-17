@@ -44,8 +44,6 @@ function verifyRasaResponse(expected_response, callback){
   assert(context.hasOwnProperty("therapist_response"));
   assert(context.therapist_response.hasOwnProperty("content"));
   assert(context.therapist_response['content'].hasOwnProperty("TEXT"));
-  //console.log(context.therapist_response['content']['TEXT'])
-  //console.log(expected_response)
   if (context.therapist_response['content']['TEXT'].includes(expected_response)) {
     callback();
   }
@@ -77,19 +75,6 @@ function isFutureSelfRepetition(callback){
 	  }
     })
 }
-
-/*function getLastPerformedActivity(){
-	var res = context.client.query('SELECT * FROM intervention_activities_performed iap join intervention_activity ia on iap.intervention_activity_id = ia.intervention_activity_id WHERE users_nicedayuid = $1 ORDER BY intervention_activities_performed_id DESC LIMIT 1',
-					     [context.user_id],
-					     (err, res) => {
-      if (err) {
-        callback('DB reading error ' + err);
-      } else {
-      console.log(res.rows[0])
-		return res.rows[0]['intervention_activity_title'];
-	  }
-    })
-}*/
 
 Given('rasa bot is up and running', function (callback) {
 
