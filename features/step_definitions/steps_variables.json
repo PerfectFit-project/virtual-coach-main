@@ -70,6 +70,15 @@
   "EXPECTED_SELF_MOVER_VIEW_OPTIONS": "Ik zie mijzelf als... lichamelijk actief (1) - een beetje lichamelijk actief (2) - niet lichamelijk actief (3)",
   "EXPECTED_CHOOSE_OPTION": "Kies de optie die het meeste bij je past en typ het nummer in de chat",
   "EXPECTED_FIJN": "Fijn",
+  "EXPECTED_THANKS_FOR_FEEDBACK": "Bedankt voor je feedback",
+  "EXPECTED_EDIT_SAVE": "Typ 1 voor 'Bewaren', Typ 2 voor 'Aanpassen'",
+  "EXPECTED_PRIMA": "Prima",
+  "EXPECTED_NEW_INPUT_1": "Kun je in een paar zinnen vertellen wat je geleerd hebt van deze oefening",
+  "EXPECTED_NEW_INPUT_2": "Typ nu een paar zinnen over wat je geleerd hebt",
+  "EXPECTED_THANKS_FOR_INPUT": "Bedankt!",
+  "EXPECTED_NEW_ACTIVITY_INTRO": "Dan is het nu tijd voor een nieuwe oefening",
+  "EXPECTED_NEW_ACTIVITIES_LIST": "Welke oefening wil je doen?",
+  "EXPECTED_GOOD_CHOICE": "Oké, goede keuze",
   "RESTART_COMMAND": "/restart",
   "ASK_FIRSTAIDKIT": "Ik wil first aid kit",
   "FIRST_AID_KIT_PRINT": "Hier is je EHBO doos",
@@ -87,5 +96,10 @@
   "SEE_MYSELF_MOVER_TEXT": "lichamelijk actief",
   "SELECTED_SMOKER_WORDS": "Fijn lekker eng",
   "SELECTED_MOVER_WORDS": "plezierig belonend geen zin in",
-  "FREE_TEXT_ANSWER": "This is a free text answer"
+  "FREE_TEXT_ANSWER": "This is a free text answer",
+  "LAST_ACTIVITY_PERFORMED": "Doe het anders",
+  "ACTIVITY_RATING": "10",
+  "EDIT_SELECTION": "2",
+  "NEW_INPUT": "This sentence has at least fifty characters to validate the answer",
+  "NEW_ACTIVITY_SELECTION": "1"
 }

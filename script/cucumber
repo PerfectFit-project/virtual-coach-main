@@ -1,4 +1,4 @@
 #!/bin/bash
-npm list | grep sense-os/goalie-js || npm install git+ssh://git@github.com/senseobservationsystems/goalie-js.git\#v0.39.2 --save
+npm list | grep sense-os/goalie-js || npm install git+ssh://git@github.com/senseobservationsystems/goalie-js.git\#v0.53.4 --save
 npm list | grep gp || npm install pg
 ./node_modules/.bin/cucumber-js
