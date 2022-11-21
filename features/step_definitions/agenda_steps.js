@@ -551,7 +551,7 @@ Then('therapist responds by asking a rating', function (callback) {
       } else {
       verifyRasaResponse(res.rows[0]['intervention_activity_title'], callback);
       context.constants.ACTIVITY_ID = res.rows[0]['intervention_activity_id']
-	  }
+    }
     });
 });
 
@@ -571,7 +571,7 @@ Then('therapist displays the last input', function (callback) {
         callback('DB reading error ' + err);
       } else {
       verifyRasaResponse(res.rows[0]['user_input'], callback);
-	  }
+    }
     });
 });
 
@@ -608,7 +608,7 @@ Then('the new input is saved on the DB', function (callback) {
       } else {
         assert(res.rows[0]['user_input'] == context.constants.NEW_INPUT);
         callback();
-	  }
+    }
     });
 });
 
@@ -658,7 +658,7 @@ Then('the new activity is saved in the DB', function (callback) {
         assert(res.rows[0]['intervention_activity_title'] == context.constants.NEW_ACTIVITY_TITLE);
         context.constants.LAST_ACTIVITY_ROW_ID = res.rows[0]['intervention_activities_performed_id'];
         callback();
-	  }
+    }
     });
 });
 
@@ -670,6 +670,6 @@ Then('clean DB for further iterations', function (callback) {
         callback('DB reading error ' + err);
       } else {
         callback();
-	  }
+    }
     });
 });
