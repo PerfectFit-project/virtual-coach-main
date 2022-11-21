@@ -59,8 +59,8 @@ function verifyRasaResponseMultiple(expected_response, callback){
 }
 
 function isFutureSelfRepetition(callback){
-	context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2', 
-					     [context.user_id, "future_self_dialog"], 
+	context.client.query('SELECT * FROM user_intervention_state WHERE users_nicedayuid = $1 AND intervention_component = $2',
+					     [context.user_id, "future_self_dialog"],
 					     (err, res) => {
       if (err) {
         callback('DB reading error ' + err);
@@ -70,7 +70,7 @@ function isFutureSelfRepetition(callback){
 		var repetition = 1;
 		if (res.rows.length < 1){
 			repetition = 0;
-		} 
+		}
 		callback(null, repetition);
 	  }
     })
@@ -531,4 +531,145 @@ Then('the dialog is concluded', function (callback) {
    .end()
    .then(() =>callback())
    .catch(err => callback(err));
+});
+
+// general activity
+When('user starts general activity dialog', function (callback) {
+  sendPatientMsg(context.constants.START_GENERAL_ACTIVITY, callback);
+});
+
+Then('therapist responds by greeting the user', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_GREETINGS, callback);
+});
+
+Then('therapist responds by asking a rating', function (callback) {
+  	context.client.query('SELECT * FROM intervention_activities_performed iap join intervention_activity ia on iap.intervention_activity_id = ia.intervention_activity_id WHERE users_nicedayuid = $1 ORDER BY intervention_activities_performed_id DESC LIMIT 1',
+					     [context.user_id],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+      verifyRasaResponse(res.rows[0]['intervention_activity_title'], callback);
+      context.constants.ACTIVITY_ID = res.rows[0]['intervention_activity_id']
+    }
+    });
+});
+
+When('user gives the rating', function (callback) {
+  sendPatientMsg(context.constants.ACTIVITY_RATING, callback);
+});
+
+Then('therapist thanks for the feedback', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_FEEDBACK, callback);
+});
+
+Then('therapist displays the last input', function (callback) {
+  	context.client.query('SELECT * FROM intervention_activities_performed WHERE users_nicedayuid = $1 and intervention_activity_id = $2',
+					     [context.user_id, context.constants.ACTIVITY_ID],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+      verifyRasaResponse(res.rows[0]['user_input'], callback);
+    }
+    });
+});
+
+Then('therapist asks to edit or save', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_EDIT_SAVE, callback);
+});
+
+When('user chooses to edit', function (callback) {
+  sendPatientMsg(context.constants.EDIT_SELECTION, callback);
+});
+
+Then('therapist says prima', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_PRIMA, callback);
+});
+
+Then('therapist asks a new input', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_NEW_INPUT_1, callback);
+});
+
+Then('therapist instructs to write the input', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_NEW_INPUT_2, callback);
+});
+
+When('user gives the input', function (callback) {
+  sendPatientMsg(context.constants.NEW_INPUT, callback);
+});
+
+Then('the new input is saved on the DB', function (callback) {
+  	context.client.query('SELECT * FROM intervention_activities_performed WHERE users_nicedayuid = $1 and intervention_activity_id = $2',
+					     [context.user_id, context.constants.ACTIVITY_ID],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+        assert(res.rows[0]['user_input'] == context.constants.NEW_INPUT);
+        callback();
+    }
+    });
+});
+
+Then('therapist thanks for the input', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_INPUT, callback);
+});
+
+Then('therapist introduces new activity', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_NEW_ACTIVITY_INTRO, callback);
+});
+
+Then('therapist produces a list of activities', function (callback) {
+  const ActivitiesList = context.therapist_response['content']['TEXT'];
+  const SplitList = ActivitiesList.split("'");
+  const ActivityOne = SplitList[1];
+  context.constants.NEW_ACTIVITY_TITLE = ActivityOne
+  verifyRasaResponse(context.constants.EXPECTED_NEW_ACTIVITIES_LIST, callback);
+});
+
+When('user selects the new activity', function (callback) {
+  sendPatientMsg(context.constants.NEW_ACTIVITY_SELECTION, callback);
+});
+
+Then('therapist says good choice', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_GOOD_CHOICE, callback);
+});
+
+Then('therapist shows new activity', function (callback) {
+  	context.client.query('SELECT * FROM intervention_activity WHERE intervention_activity_title = $1',
+					     [context.constants.NEW_ACTIVITY_TITLE],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+        verifyRasaResponse(res.rows[0]['intervention_activity_full_instructions'], callback);
+	  }
+    });
+});
+
+Then('the new activity is saved in the DB', function (callback) {
+  	context.client.query('SELECT * FROM intervention_activities_performed iap join intervention_activity ia on iap.intervention_activity_id = ia.intervention_activity_id WHERE users_nicedayuid = $1 ORDER BY intervention_activities_performed_id DESC LIMIT 1',
+					     [context.user_id],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+        assert(res.rows[0]['intervention_activity_title'] == context.constants.NEW_ACTIVITY_TITLE);
+        context.constants.LAST_ACTIVITY_ROW_ID = res.rows[0]['intervention_activities_performed_id'];
+        callback();
+    }
+    });
+});
+
+Then('clean DB for further iterations', function (callback) {
+  	context.client.query('DELETE FROM intervention_activities_performed WHERE intervention_activities_performed_id = $1',
+					     [context.LAST_ACTIVITY_ROW_ID],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+        callback();
+    }
+    });
 });
