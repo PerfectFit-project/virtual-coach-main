@@ -24,6 +24,8 @@ services:
     ports:
       - 5005:5005
     expose: ["5005"]
+    env_file:
+      - .env
 
   rasa_actions:
     build:
