@@ -11,7 +11,7 @@ services:
       - "5432:5432"
 
   manage_db:
-    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
+    build: /Users/lotte/ProgramProjects/PerfectFit/virtual-coach-db
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db.sh"]
@@ -20,17 +20,25 @@ services:
 
   rasa_server:
     build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      context: /Users/lotte/ProgramProjects/PerfectFit/virtual-coach-rasa/Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
+    volumes:
+      - /Users/lotte/ProgramProjects/PerfectFit/virtual-coach-rasa/Rasa_Bot/:/app
+    tty: true
+    stdin_open: true
 
   rasa_actions:
     build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+      context: /Users/lotte/ProgramProjects/PerfectFit/virtual-coach-rasa/Rasa_Bot/actions
     expose: ["5055"]
     env_file:
       - .env
+    volumes:
+      - /Users/lotte/ProgramProjects/PerfectFit/virtual-coach-rasa/Rasa_Bot/actions/:/app/actions
+    tty: true
+    stdin_open: true
 
   redis:
     image: "redis:alpine"
