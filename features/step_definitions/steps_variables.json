@@ -71,6 +71,31 @@
   "EXPECTED_CHOOSE_OPTION": "Kies de optie die het meeste bij je past en typ het nummer in de chat",
   "EXPECTED_FIJN": "Fijn",
   "EXPECTED_THANKS_FOR_FEEDBACK": "Bedankt voor je feedback",
+  "EXPECTED_THANKS_FOR_SHARING": "Oke, bedankt om dat te delen!",
+  "EXPECTED_INTRO_STATE_QUESTION_ANSWERING": ["Ik wil je nu graag een paar vragen stellen over de activiteit die je gaat doen.",
+											  "Dan zou ik je nu graag wat vragen stellen over de activiteit die je gaat doen.",
+											  "Ik zou je nu graag wat willen vragen over de activiteit die je gaat doen."]
+  "EXPECTED_QUESTION_STATE_QUESTION_ANSEWRING": "Kun je mij laten weten wat je van de volgende uitspraken vindt?"
+  "EXPECTED_PROMPTS_STATE_QUESTION": "1) Ik heb dingen die mij eraan herinneren om de activiteit te doen."
+  "EXPECTED_STATE_QUESTION_RATING_OPTIONS": "1. Helemaal mee oneens - 2. Mee oneens - 3. Niet mee eens, niet mee oneens - 4. Mee eens - 5. Helemaal mee eens. Typ '1', '2', '3', '4', of '5'."
+  "EXPECTED_WANT_STATE_QUESTION": "2) Ik heb het gevoel dat ik de activiteit wil gaan doen."
+  "EXPECTED_NEED_STATE_QUESTION": "3) Ik heb het gevoel dat ik de activiteit moet doen."
+  "EXPECTED_THANK_STATE_QUESTION_ANSWERING": ["Super! Bedankt voor je antwoorden.",
+                                              "Bedankt voor het beantwoorden van de vragen!",
+											  "Goed! Heel fijn dat je deze vragen wilde beantwoorden."]
+  "EXPECTED_PERSUASION_COMMITMENT": ["Vergeet niet: Je hebt besloten om gezonder te gaan leven. Het zal goed voelen wanneer je je aan deze belofte houdt.",
+									 "Vergeet niet: Je hebt besloten om gezonder te gaan leven. We willen natuurlijk dat je hier niet te veel over nadenkt, maar het zal niet fijn voelen als je je niet aan deze belofte houdt.",
+									 "Vergeet niet: Je wilt graag gezonder gaan leven. Ik gun je dat dit gaat lukken.",
+									 "Vergeet niet: Je wilt graag gezonder gaan leven. Ik hoop dat je deze belofte niet breekt.",
+									 "Vergeet niet: Je hebt beloofd om iemand te worden die gezonder leeft. Deze activiteit kan je helpen om deze persoon te worden.",
+									 "Vergeet niet: Je hebt beloofd om iemand te worden die gezonder leeft. Als je deze activiteit NIET doet, kan het moeilijker zijn om deze persoon te worden."]
+  "EXPECTED_REFLECTIVE_QUESTION_COMMITMENT": ["Je hebt het besluit genomen om gezonder te gaan leven. Hoe helpt deze activiteit jou hierbij?",
+                                              "Hoe helpt deze activiteit jou bij jouw besluit om iemand te worden die gezonder leeft?"]
+  "REFLECTION_ANSWER": "I think this activity will help me because it can give me more motivation to carry on."
+  "EXPECTED_REFLECTION_THANKS": ["Oké, bedankt voor het delen!",
+                                 "Super dat je jouw gedachten met mij wilde delen!",
+								 "Heel fijn dat je dit wilde delen!"]
+  "EXPECTED_NEW_ACTIVITY_TEXT_INTRO": "Hier is je nieuwe oefening:"
   "EXPECTED_EDIT_SAVE": "Typ 1 voor 'Bewaren', Typ 2 voor 'Aanpassen'",
   "EXPECTED_PRIMA": "Prima",
   "EXPECTED_NEW_INPUT_1": "Kun je in een paar zinnen vertellen wat je geleerd hebt van deze oefening",
@@ -99,6 +124,9 @@
   "FREE_TEXT_ANSWER": "This is a free text answer",
   "LAST_ACTIVITY_PERFORMED": "Doe het anders",
   "ACTIVITY_RATING": "10",
+  "STATE_PROMPTS_RATING": "1",
+  "STATE_WANT_RATING": "2",
+  "STATE_NEED_RATING": "1",
   "EDIT_SELECTION": "2",
   "NEW_INPUT": "This sentence has at least fifty characters to validate the answer",
   "NEW_ACTIVITY_SELECTION": "1"

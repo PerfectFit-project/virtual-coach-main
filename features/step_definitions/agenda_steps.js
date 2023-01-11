@@ -563,6 +563,70 @@ Then('therapist thanks for the feedback', function (callback) {
   verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_FEEDBACK, callback);
 });
 
+Then('therapist thanks for the sharing', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_SHARING, callback);
+});
+
+Then('therapist introduces the state question answering', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_INTRO_STATE_QUESTION_ANSWERING, callback);
+});
+
+Then('therapist asks question state question answering', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_QUESTION_STATE_QUESTION_ANSEWRING, callback);
+});
+
+Then('therapist asks prompts state question', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_PROMPTS_STATE_QUESTION, callback);
+});
+
+Then('therapist lists state question answer options', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_STATE_QUESTION_RATING_OPTIONS, callback);
+});
+
+When('user gives the prompts rating', function (callback) {
+  sendPatientMsg(context.constants.STATE_PROMPTS_RATING, callback);
+});
+
+Then('therapist asks want state question', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_WANT_STATE_QUESTION, callback);
+});
+  
+When('user gives the want rating', function (callback) {
+  sendPatientMsg(context.constants.STATE_WANT_RATING, callback);
+});
+
+Then('therapist asks need state question', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_NEED_STATE_QUESTION, callback);
+});
+  
+When('user gives the need rating', function (callback) {
+  sendPatientMsg(context.constants.STATE_NEED_RATING, callback);
+});
+
+Then('therapist thanks state question answering', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_THANK_STATE_QUESTION_ANSWERING, callback);
+});
+
+Then('therapist persuades with commitment', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_PERSUASION_COMMITMENT, callback);
+});
+
+Then('therapist asks commitment reflective question', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_REFLECTIVE_QUESTION_COMMITMENT, callback);
+});
+
+When('user gives the reflection', function (callback) {
+  sendPatientMsg(context.constants.REFLECTION_ANSWER, callback);
+});
+
+Then('therapist thanks for the reflection', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_REFLECTION_THANKS, callback);
+});
+
+Then('therapist introduces new activity text', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_NEW_ACTIVITY_TEXT_INTRO, callback);
+});
+
 Then('therapist displays the last input', function (callback) {
   	context.client.query('SELECT * FROM intervention_activities_performed WHERE users_nicedayuid = $1 and intervention_activity_id = $2',
 					     [context.user_id, context.constants.ACTIVITY_ID],
