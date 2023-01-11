@@ -111,7 +111,7 @@ Feature: General activity dialog
 	  Then the message is addressed to the therapist
       When therapist produces a response
 	   And therapist response is found to be addressed to the user
-	   And the therapist thanks for the reflection
+	   And therapist thanks for the reflection
 	   And therapist produces a response
        And therapist response is found to be addressed to the user
 	   And therapist introduces new activity text

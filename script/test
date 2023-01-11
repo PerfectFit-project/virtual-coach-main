@@ -5,7 +5,7 @@ TIME_COUNTER=0
 #!/bin/bashcd
 npm install
 script/bootstrap
-docker-compose up -d
+docker-compose up
 
 #wait for all the containers to be running and the db to be populated
 until ("$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_server_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_api_1)"  && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_niceday_broker_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_rasa_actions_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_db_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_redis_1)" && "$(docker container inspect -f '{{.State.Running}}' virtual-coach-main_scheduler_1)" && test "$(docker container inspect -f '{{.State.ExitCode}}' virtual-coach-main_manage_db_1)" = 0); do
