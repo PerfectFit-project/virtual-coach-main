@@ -27,10 +27,10 @@ Feature: General activity dialog
       When therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist thanks for the sharing
-	   And therapist produces a response
+       And therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist responds by asking a rating
-	  When user gives the rating
+      When user gives the rating
       Then the message is addressed to the therapist
       When therapist produces a response
        And therapist response is found to be addressed to the user
