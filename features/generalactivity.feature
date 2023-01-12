@@ -26,6 +26,14 @@ Feature: General activity dialog
       Then the message is addressed to the therapist
       When therapist produces a response
        And therapist response is found to be addressed to the user
+       And therapist thanks for the sharing
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist responds by asking a rating
+      When user gives the rating
+      Then the message is addressed to the therapist
+      When therapist produces a response
+       And therapist response is found to be addressed to the user
        And therapist thanks for the feedback
        And therapist produces a response
        And therapist response is found to be addressed to the user
@@ -60,6 +68,53 @@ Feature: General activity dialog
       When therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist says good choice
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist introduces the state question answering
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist asks question state question answering
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist asks prompts state question
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist lists state question answer options
+	  When user gives the prompts rating
+      Then the message is addressed to the therapist
+      When therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist asks want state question
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist lists state question answer options
+	  When user gives the want rating
+      Then the message is addressed to the therapist
+      When therapist produces a response
+	   And therapist response is found to be addressed to the user
+	   And therapist asks need state question
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist lists state question answer options
+	  When user gives the need rating
+      Then the message is addressed to the therapist
+      When therapist produces a response
+	   And therapist response is found to be addressed to the user
+	   And therapist thanks state question answering
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+	   And therapist persuades with commitment
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+	   And therapist asks commitment reflective question
+	  When user gives the reflection
+	  Then the message is addressed to the therapist
+      When therapist produces a response
+	   And therapist response is found to be addressed to the user
+	   And therapist thanks for the reflection
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+	   And therapist introduces new activity text
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And therapist shows new activity
