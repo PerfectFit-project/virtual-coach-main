@@ -31,6 +31,12 @@ ansible stage -i inventory -m ping -u root
 
 If this is successful, then your inventory file is correctly set up.
 
+## Getting a token for reading private packages from the gchr
+The niceday-broker and niceday-client packages (built from the [niceday components](https://github.com/PerfectFit-project/niceday-components) repository) are private. This is because they use the `goaliejs` library (closed source). In order for the prod and stage servers to be able to pull these private packages, a token is needed that has permissions to read that repository. The current method is to use a 'machine user' (a github account only used for the purposes of automation). The machine user we are using is called [perfectfit-machineuser](https://github.com/perfectfit-machineuser) and is added as an outside collaborator with read-only access to the niceday-components repo. We then use the Personal Access Token of this machine-user to grant access to the private packages.
+
+Put the machine-user's Personal Access Token into a file called `SECRET_read_private_packages_token` in the same directory as the `inventory` file.
+ 
+
 ## Setting up the staging and production servers
 Now you can run the `initial-setup.yml` playbook, which installs docker, docker-compose and the general config environment on both the prod and stage servers defined in your `inventory` file. Run the notebook as follows:
 
