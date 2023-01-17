@@ -1,5 +1,5 @@
 ---
-- name: Install docker
+- name: Update staging server
   hosts: stage
   user: root
   tasks:
