@@ -1,12 +1,12 @@
 ---
-- name: Install docker
+- name: Updating production server
   hosts: prod
   user: root
   tasks:
     - name: Print out release version user has chosen for production
       debug:
         msg: "Moving prod to version {{ RELEASETAG }}"
-    - name: Copy .env for staging
+    - name: Copy .env for prod
       ansible.builtin.copy:
         src: ../.env.prod
         dest: ~/.env.prod
@@ -23,8 +23,10 @@
         mode: '0644'
     - name: Log into docker ghcr
       shell: cat SECRET_read_private_packages_token | docker login ghcr.io -u USERNAME --password-stdin
-    - name: Stop docker compose (if up)
+    - name: docker compose down the previous app (if up)
       shell: 'RELEASETAG={{ RELEASETAG }} docker compose -f docker-compose.prod.yml down --remove-orphans --rmi all -v'
+    - name: Stop any containers that may have been missed by the "docker compose down"
+      shell: 'docker stop $(docker container ls -q)'
     - name: Prune containers and networks
       shell: 'docker system prune -a -f'
     - name: Start docker compose
