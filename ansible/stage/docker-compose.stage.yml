@@ -13,7 +13,7 @@ services:
     build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
     tty: true
     restart: on-failure
-    command: ["/app/utils/init-db.sh"]
+    command: ["/app/utils/init-db-tests.sh"]
     env_file:
       - .env.stage
 
