@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6472297.svg)](https://doi.org/10.5281/zenodo.6472297)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6955/badge)](https://bestpractices.coreinfrastructure.org/projects/6955)
 
 # PerfectFit virtual coach system main repository
 This is a virtual coach system that will coach users into being more physically active and stop smoking.
