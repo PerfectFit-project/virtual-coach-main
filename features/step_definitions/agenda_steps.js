@@ -179,18 +179,58 @@ Then('therapist response is found to be addressed to the user', function(callbac
   callback();
 });
 
-Then('first aid kit is printed', function(callback){
+Then('first aid kit intro is printed', function(callback){
   context.client.query('SELECT * FROM first_aid_kit WHERE users_nicedayuid = $1', [context.user_id], (err, res) => {
       if (err) {
         callback('DB reading error')
       } else{
 		if (res.rows.length > 0){
-			verifyRasaResponse(context.constants.FIRST_AID_KIT_PRINT, callback);
+			verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_INTRO_PRINT, callback);
 		} else{
 			verifyRasaResponse(context.constants.FIRST_AID_KIT_EMPTY, callback);
 		}
 	  }
   })
+});
+
+Then('first aid kit content is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_CONTENT_PRINT, callback);
+});
+
+Then('first aid kit show activity titles two is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_SHOW_ACTIVITY_TITLES_TWO_PRINT, callback);
+});
+
+Then('first aid kit chosen activity slot intro is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_CHOSEN_ACTIVITY_SLOT_INTO_PRINTT, callback);
+});
+
+When('user gives the chosen activity slot', function (callback) {
+  sendPatientMsg(context.constants.FIRST_AID_KIT_CHOSEN_ACTIIVTY_SLOT, callback);
+});
+
+Then('first aid kit show full text noinput one is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_SHOW_FULL_TEXT_NOINPUT_ONE_PRINT, callback);
+});
+
+Then('first aid kit show full text noinput two is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_SHOW_FULL_TEXT_NOINPUT_TWO_PRINT, callback);
+});
+
+Then('first aid kit end or repeat is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_OR_REPEAT_PRINT, callback);
+});
+
+When('user gives the first aid kit end slot', function (callback) {
+  sendPatientMsg(context.constants.FIRST_AID_KIT_END_SLOT, callback);
+});
+
+Then('first aid kit end one is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_ONE_PRINT, callback);
+});
+
+Then('first aid kit end one is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_TWO_PRINT, callback);
 });
 
 Then('advice on running distance is given', function (callback) {
