@@ -32,6 +32,9 @@ Feature: First aid kit
 	   And therapist produces a response
        And therapist response is found to be addressed to the user
        And first aid kit end or repeat is printed
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And first aid kit end slot ask is printed
 	  When user gives the first aid kit end slot
       Then the message is addressed to the therapist
       When therapist produces a response

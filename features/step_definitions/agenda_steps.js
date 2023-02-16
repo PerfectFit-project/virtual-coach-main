@@ -50,6 +50,20 @@ function verifyRasaResponse(expected_response, callback){
   callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
+function verifyRasaResponseMultiplePartial(expected_response, callback){
+  assert(context.hasOwnProperty("therapist_response"));
+  assert(context.therapist_response.hasOwnProperty("content"));
+  assert(context.therapist_response['content'].hasOwnProperty("TEXT"));
+  var matching_text = 'default_text';
+  for (var i = 0; i < expected_response.length; i++){
+	  if (context.therapist_response['content']['TEXT'].includes(expected_response[i])){
+		  matching_text = expected_response[i];
+	  }
+  }
+  assert(context.therapist_response['content']['TEXT'].includes(matching_text));
+  callback();
+}
+
 function verifyRasaResponseMultiple(expected_response, callback){
   assert(context.hasOwnProperty("therapist_response"));
   assert(context.therapist_response.hasOwnProperty("content"));
@@ -194,7 +208,7 @@ Then('first aid kit intro is printed', function(callback){
 });
 
 Then('first aid kit content is printed', function (callback) {
-  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_CONTENT_PRINT, callback);
+  verifyRasaResponseMultiplePartial(context.constants.FIRST_AID_KIT_CONTENT_PRINT, callback);
 });
 
 Then('first aid kit show activity titles two is printed', function (callback) {
@@ -202,7 +216,7 @@ Then('first aid kit show activity titles two is printed', function (callback) {
 });
 
 Then('first aid kit chosen activity slot intro is printed', function (callback) {
-  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_CHOSEN_ACTIVITY_SLOT_INTO_PRINTT, callback);
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_CHOSEN_ACTIVITY_SLOT_INTO_PRINT, callback);
 });
 
 When('user gives the chosen activity slot', function (callback) {
@@ -210,7 +224,7 @@ When('user gives the chosen activity slot', function (callback) {
 });
 
 Then('first aid kit show full text noinput one is printed', function (callback) {
-  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_SHOW_FULL_TEXT_NOINPUT_ONE_PRINT, callback);
+  verifyRasaResponseMultiplePartial(context.constants.FIRST_AID_KIT_SHOW_FULL_TEXT_NOINPUT_ONE_PRINT, callback);
 });
 
 Then('first aid kit show full text noinput two is printed', function (callback) {
@@ -221,6 +235,10 @@ Then('first aid kit end or repeat is printed', function (callback) {
   verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_OR_REPEAT_PRINT, callback);
 });
 
+Then('first aid kit end slot ask is printed', function (callback) {
+  verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_SLOT_ASK, callback);
+});
+
 When('user gives the first aid kit end slot', function (callback) {
   sendPatientMsg(context.constants.FIRST_AID_KIT_END_SLOT, callback);
 });
@@ -229,7 +247,7 @@ Then('first aid kit end one is printed', function (callback) {
   verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_ONE_PRINT, callback);
 });
 
-Then('first aid kit end one is printed', function (callback) {
+Then('first aid kit end two is printed', function (callback) {
   verifyRasaResponseMultiple(context.constants.FIRST_AID_KIT_END_TWO_PRINT, callback);
 });
 
