@@ -20,27 +20,19 @@ services:
 
   rasa_server:
     build:
-      context: C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot
-    volumes:
-      -  C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot:/app
+      context: context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
     env_file:
       - .env
-    tty: true
-    stdin_open: true
 
   rasa_actions:
     build:
-      context: C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot/actions
-    volumes:
-      -  C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot/actions:/app/actions
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
     expose: ["5055"]
     env_file:
       - .env
-    tty: true
-    stdin_open: true
 
   redis:
     image: "redis:alpine"
