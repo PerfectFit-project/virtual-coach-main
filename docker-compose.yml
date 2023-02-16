@@ -20,7 +20,7 @@ services:
 
   rasa_server:
     build:
-      context: context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
