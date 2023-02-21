@@ -57,11 +57,10 @@ function verifyRasaResponseMultiplePartial(expected_response, callback){
   var matching_text = 'default_text';
   for (var i = 0; i < expected_response.length; i++){
 	  if (context.therapist_response['content']['TEXT'].includes(expected_response[i])){
-		  matching_text = expected_response[i];
+		  callback();
 	  }
   }
-  assert(context.therapist_response['content']['TEXT'].includes(matching_text));
-  callback();
+  callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
 function verifyRasaResponseMultiple(expected_response, callback){
