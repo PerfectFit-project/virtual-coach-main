@@ -50,17 +50,18 @@ function verifyRasaResponse(expected_response, callback){
   callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
+// Here not the response text has to be equal to one of the options in expected_response.
+// Instead, is enough if one of the options in expected_response is contained in the response text.
 function verifyRasaResponseMultiplePartial(expected_response, callback){
   assert(context.hasOwnProperty("therapist_response"));
   assert(context.therapist_response.hasOwnProperty("content"));
   assert(context.therapist_response['content'].hasOwnProperty("TEXT"));
-  var matching_text = 'default_text';
   for (var i = 0; i < expected_response.length; i++){
 	  if (context.therapist_response['content']['TEXT'].includes(expected_response[i])){
 		  callback();
 	  }
   }
-  callback('Error: ', context.therapist_response['content']['TEXT']);
+  callback('Error: No expected response option contained in response text: ', context.therapist_response['content']['TEXT']);
 }
 
 function verifyRasaResponseMultiple(expected_response, callback){
