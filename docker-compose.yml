@@ -20,7 +20,9 @@ services:
 
   rasa_server:
     build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
+      context: C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot
+    volumes:
+      -  C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot:/app
     ports:
       - 5005:5005
     expose: ["5005"]
@@ -29,7 +31,9 @@ services:
 
   rasa_actions:
     build:
-      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+      context: C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot/actions
+    volumes:
+      -  C://users/nalbers1/documents/virtual-coach-rasa/Rasa_Bot/actions:/app/actions
     expose: ["5055"]
     env_file:
       - .env

@@ -795,3 +795,119 @@ Then('clean DB for further iterations', function (callback) {
     }
     });
 });
+
+//
+// PROFILE CREATION DIALOG
+//
+
+When('we ask for the profile creation dialog', function (callback) {
+  sendPatientMsg(context.constants.ASK_PROFILE_CREATION_DIALOG, callback);
+});
+
+Then('profile creation rescheduling one is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_RESCHEDULING_ONE_PRINT, callback);
+});
+
+Then('profile creation rescheduling two is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_RESCHEDULING_TWO_PRINT, callback);
+});
+
+Then('profile creation rescheduling three is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_RESCHEDULING_THREE_PRINT, callback);
+});
+
+Then('profile creation rescheduling four is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_RESCHEDULING_FOUR_PRINT, callback);
+});
+
+When('user gives the profile creation rescheduling answer', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_RESCHEDULING_ANSWER, callback);
+});
+
+Then('profile creation start one is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_START_ONE_PRINT, callback);
+});
+
+Then('profile creation start two is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_START_TWO_PRINT, callback);
+});
+
+Then('profile creation start three is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_START_THREE_PRINT, callback);
+});
+
+Then('profile creation code one is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_CODE_ONE_PRINT, callback);
+});
+
+Then('profile creation code two is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_CODE_TWO_PRINT, callback);
+});
+
+Then('profile creation ask code slot is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_ASK_CODE_SLOT_PRINT, callback);
+});
+
+When('user gives the profile creation code answer', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_CODE_ANSWER, callback);
+});
+
+Then('profile creation code three is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_CODE_THREE_PRINT, callback);
+});
+
+Then('profile creation preference one is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_ONE_PRINT, callback);
+});
+
+Then('profile creation preference two is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_TWO_PRINT, callback);
+});
+
+Then('profile creation preference three is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_THREE_PRINT, callback);
+});
+
+Then('profile creation ask day slot is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_ASK_DAY_SLOT_PRINT, callback);
+});
+
+When('user gives the profile creation day slot answer one', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_DAY_SLOT_ANSWER_ONE, callback);
+});
+
+Then('profile creation day not valid is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_DAY_NOT_VALID_PRINT, callback);
+});
+
+When('user gives the profile creation day slot answer two', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_DAY_SLOT_ANSWER_TWO, callback);
+});
+
+Then('profile creation preference four is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_FOUR_PRINT, callback);
+});
+
+Then('profile creation preference five is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_FIVE_PRINT, callback);
+});
+
+Then('profile creation ask time slot is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_ASK_TIME_SLOT, callback);
+});
+
+When('user gives the profile creation time slot answer', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_TIME_SLOT_ANSWER, callback);
+});
+
+Then('profile creation preference six is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_PREFERENCE_SIX_PRINT, callback);
+});
+
+Then('profile creation ask confirm preference slot is printed', function (callback) {
+  verifyRasaResponse(context.constants.PROFILE_CREATION_ASK_CONFIRM_PREFERENCE_SLOT_PRIN, callback);
+});
+
+When('user gives the profile creation time confirm preference slot answer', function (callback) {
+  sendPatientMsg(context.constants.PROFILE_CREATION_CONFIRM_PREFERENCE_SLOT_ANSWER, callback);
+});
