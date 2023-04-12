@@ -1143,3 +1143,43 @@ Then('utter_closing_congratualate_5 is printed', function (callback) {
 Then('utter_closing_congratualate_6 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_6, callback);
 });
+
+Then('utter_closing_pa_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_1, callback);
+});
+
+Then('utter_closing_pa_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_2, callback);
+});
+
+Then('utter_closing_pa_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_3, callback);
+});
+
+Then('utter_closing_pa_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_4, callback);
+});
+
+Then('utter_closing_pa_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_5, callback);
+});
+
+Then('utter_ask_closing_pa_evaluation is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_PA_EVALUATION, callback);
+});
+
+When('user answers utter_ask_closing_pa_evaluation with 1', function (callback) {
+  verifyRasaResponse(context.constants.CLOSING_PA_EVALUATION_ANSWER, callback);
+});
+
+Then('utter_closing_pa_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_6, callback);
+});
+
+Then('utter_closing_pa_7 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_7, callback);
+});
+
+Then('utter_closing_pa_8 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_8, callback);
+});

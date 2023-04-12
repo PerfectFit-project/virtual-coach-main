@@ -30,6 +30,35 @@ Feature: Closing dialog
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And utter_closing_congratualate_6 is printed
-       
        And therapist produces a response
        And therapist response is found to be addressed to the user
+       And utter_closing_pa_1 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And action_closing_get_total_number_steps is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_2 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_3 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_4 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_5 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_ask_closing_pa_evaluation is printed
+      When user answers utter_ask_closing_pa_evaluation with 1
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And utter_closing_pa_6 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_7 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_pa_8 is printed
