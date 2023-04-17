@@ -246,7 +246,7 @@
   "UTTER_CLOSING_CONGRATULATE_5": "Als je nog geen beloning had bedacht of het niet meer weet, kun je nu iets bedenken. 💭",
   "UTTER_CLOSING_CONGRATULATE_6": "Ik wil graag samen met jou kijken hoe het is gegaan met het bewegen en stoppen met roken, en wat je hebt bereikt.",
   "UTTER_CLOSING_PA_1": "Laten we eerst kijken naar bewegen. 🚶🏃",
-  "UTTER_CLOSING_PA_2": "Je hebt consequent je stappen bijgehouden en in totaal heb je {closing_total_steps_number} stappen gezet tijdens Perfect Fit! 🚶",
+  "UTTER_CLOSING_PA_2": "Je hebt consequent je stappen bijgehouden en in totaal heb je 99 stappen gezet tijdens Perfect Fit! 🚶",
   "UTTER_CLOSING_PA_3": "Misschien heb je zelfs meer stappen gezet als je niet altijd de tracker hebt gebruikt.",
   "UTTER_CLOSING_PA_4": "Bij het begin van Perfect Fit heb je ook een beweegdoel voor jezelf gesteld voor het einde van het programma.",
   "UTTER_CLOSING_PA_5": "Dit was jouw doel: {closing_pa_goal}",
@@ -327,6 +327,8 @@
   "UTTER_ASK_CLOSING_PF_GRADE": "Typ 1, 2, 3, 4, 5, 6, 7, 8, 9 of 10",
   "UTTER_ASK_CLOSING_PF_EVALUATE": "Heb je nog tips om Perfect Fit beter te maken?",
   "UTTER_PLEASE_ANSWER_PF_EVAL": "Typ een getal tussen '1' en '10', om aan te geven wat je van Perfect Fit vindt.",
-
-  "CLOSING_PA_EVALUATION_ANSWER": "1"
+  "LONG_TERM_PA_GOAL": "Gezond oud worden",
+  "CLOSING_PA_EVALUATION_ANSWER": "1",
+  "CLOSING_LAPSE_INFO_CORRECT_ANSWER": "1",
+  "CLOSING_RELAPSE_PREVENTION_PlAN_READY": "Klaar"
 }
