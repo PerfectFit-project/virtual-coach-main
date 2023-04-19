@@ -1120,27 +1120,27 @@ Then('utter greeting is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_GREETING, callback);
 });
 
-Then('utter_closing_congratualate_1 is printed', function (callback) {
+Then('utter_closing_congratulate_1 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_1, callback);
 });
 
-Then('utter_closing_congratualate_2 is printed', function (callback) {
+Then('utter_closing_congratulate_2 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_2, callback);
 });
 
-Then('utter_closing_congratualate_3 is printed', function (callback) {
+Then('utter_closing_congratulate_3 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_3, callback);
 });
 
-Then('utter_closing_congratualate_4 is printed', function (callback) {
+Then('utter_closing_congratulate_4 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_4, callback);
 });
 
-Then('utter_closing_congratualate_5 is printed', function (callback) {
+Then('utter_closing_congratulate_5 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_5, callback);
 });
 
-Then('utter_closing_congratualate_6 is printed', function (callback) {
+Then('utter_closing_congratulate_6 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_6, callback);
 });
 

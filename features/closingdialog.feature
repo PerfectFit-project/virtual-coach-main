@@ -13,22 +13,22 @@ Feature: Closing dialog
        And utter greeting is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_1 is printed
+       And utter_closing_congratulate_1 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_2 is printed
+       And utter_closing_congratulate_2 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_3 is printed
+       And utter_closing_congratulate_3 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_4 is printed
+       And utter_closing_congratulate_4 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_5 is printed
+       And utter_closing_congratulate_5 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_congratualate_6 is printed
+       And utter_closing_congratulate_6 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And utter_closing_pa_1 is printed
