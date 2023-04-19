@@ -97,4 +97,126 @@ Feature: Closing dialog
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
-       And utter_closing_smoke_succes_1 is printed
+       And utter_closing_prevention_plan_1 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_2 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_3 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_4 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_ask_closing_relapse_prevention_plan_one_done is printed
+      When user answers utter_ask_closing_relapse_prevention_plan_one_done with klaar
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_5 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist sends an image
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_6 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_7 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist sends an image
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_8a is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_8b is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_9a is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_9b is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_10 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_11 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_12 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_13 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_14 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_15 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_15 is printed
+      When user answers utter_ask_closing_relapse_prevention_plan_two_done with klaar
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And utter_closing_prevention_plan_16 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_1 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_2 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_3 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_4 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_5 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_prevention_success_6 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_1 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_2 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_3 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_4 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_5 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_ask_closing_pf_grade is printed
+      When user answers utter_ask_closing_pf_grade with 7
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And dankjewel is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_ask_closing_pf_evaluate is printed is printed
+      When user answers utter_ask_closing_pf_evaluate with text
+      Then the message is addressed to the therapist
+      When therapist produces a response
+      Then therapist response is found to be addressed to the user
+       And utter_closing_closing_6 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_7 is printed
+       And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And utter_closing_closing_8 is printed
