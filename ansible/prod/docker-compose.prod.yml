@@ -12,6 +12,8 @@ services:
   rasa_server:
     expose: ["5005"]
     image: ghcr.io/perfectfit-project/rasa_server:$RELEASETAG
+    env_file:
+      - .env.prod
 
   rasa_actions:
     image: ghcr.io/perfectfit-project/rasa_actions:$RELEASETAG
