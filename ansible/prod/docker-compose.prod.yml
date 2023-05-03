@@ -12,19 +12,25 @@ services:
   rasa_server:
     expose: ["5005"]
     image: ghcr.io/perfectfit-project/rasa_server:$RELEASETAG
+    restart: always
+    env_file:
+      - .env.prod
 
   rasa_actions:
     image: ghcr.io/perfectfit-project/rasa_actions:$RELEASETAG
     expose: ["5055"]
+    restart: always
     env_file:
       - .env.prod
 
   redis:
     image: "redis:alpine"
+    restart: always
     expose: ["6379"]
 
   scheduler:
     image: ghcr.io/perfectfit-project/scheduler:$RELEASETAG
+    restart: always
     expose: ["8080"]
     depends_on:
      - redis
@@ -34,10 +40,12 @@ services:
 
   niceday_broker:
     image: ghcr.io/perfectfit-project/niceday_broker:$RELEASETAG
+    restart: always
     env_file:
       - .env.prod
 
   niceday_api:
     image: ghcr.io/perfectfit-project/niceday_api:$RELEASETAG
+    restart: always
     env_file:
       - .env.prod

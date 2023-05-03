@@ -24,6 +24,7 @@
       shell: 'docker compose -f docker-compose.stage.yml down --remove-orphans --rmi all -v'
     - name: Stop any containers that may have been missed by the "docker compose down"
       shell: 'docker stop $(docker container ls -q)'
+      ignore_errors: true
     - name: Prune containers and networks
       shell: 'docker system prune -a --volumes -f'
     - name: Start docker compose
