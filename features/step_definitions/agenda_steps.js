@@ -1426,3 +1426,39 @@ Then('utter_closing_closing_7 is printed', function (callback) {
 Then('utter_closing_closing_8 is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_8, callback);
 });
+
+Then('pa_evaluation_form_grade is in db', function (callback) {
+
+	// Get participant evaluation code from db
+    context.client.query('SELECT * FROM users WHERE pf_evaluation_grade = $1',
+                     [context.constants.CLOSING_PF_GRADE_ANSWER],
+                     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+		}
+		else{
+			if (res.rows[0]['pf_evaluation_grade'] == context.constants.CLOSING_PF_GRADE_ANSWER) {
+			callback();
+		    }
+		    callback('Error: ', res.rows[0]['pf_evaluation_grade']);
+	  }
+    });
+});
+
+Then('pa_evaluation_form_evaluation is in db', function (callback) {
+
+	// Get participant evaluation code from db
+    context.client.query('SELECT * FROM users WHERE pf_evaluation_comment = $1',
+                     [context.constants.CLOSING_PF_EVALUATE_ANSWER],
+                     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+		}
+		else{
+			if (res.rows[0]['pf_evaluation_comment'] == context.constants.CLOSING_PF_EVALUATE_ANSWER) {
+			callback();
+		    }
+		    callback('Error: ', res.rows[0]['pf_evaluation_comment']);
+	  }
+    });
+});

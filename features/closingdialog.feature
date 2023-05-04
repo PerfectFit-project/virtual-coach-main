@@ -205,6 +205,7 @@ Feature: Closing dialog
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
+       And pa_evaluation_form_grade is in db
        And dankjewel is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
@@ -213,6 +214,7 @@ Feature: Closing dialog
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
+       And pa_evaluation_form_evaluation is in db
        And utter_closing_closing_6 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
