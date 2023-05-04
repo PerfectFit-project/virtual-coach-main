@@ -50,6 +50,16 @@ function verifyRasaResponse(expected_response, callback){
   callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
+function verifyRasaImageResponse(callback){
+  assert(context.hasOwnProperty("therapist_response"));
+  assert(context.therapist_response.hasOwnProperty("content"));
+  assert(context.therapist_response.hasOwnProperty("attachmentIds"));
+  if (context.therapist_response['attachmentIds'] !== "") {
+    callback();
+  }
+  callback('Error: ', context.therapist_response['attachmentIds']);
+}
+
 // Here not the response text has to be equal to one of the options in expected_response.
 // Instead, is enough if one of the options in expected_response is contained in the response text.
 function verifyRasaResponseMultiplePartial(expected_response, callback){
@@ -1116,7 +1126,7 @@ When('we ask for the closing dialog', function (callback) {
   sendPatientMsg(context.constants.ASK_CLOSING_DIALOG, callback);
 });
 
-Then('utter greeting is printed', function (callback) {
+Then('utter_greeting is printed', function (callback) {
   verifyRasaResponse(context.constants.UTTER_GREETING, callback);
 });
 
@@ -1161,11 +1171,7 @@ Then('utter_closing_pa_4 is printed', function (callback) {
 });
 
 Then('utter_closing_pa_5 is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_5, callback);
-});
-
-Then('utter_closing_pa_5 is printed', function (callback) {
-  	context.client.query('SELECT * FROM users WHERE long_term_pa_goal = $1', // TODO: needs a proper check
+  	context.client.query('SELECT * FROM users WHERE long_term_pa_goal = $1',
 					     [context.constants.LONG_TERM_PA_GOAL],
 					     (err, res) => {
       if (err) {
@@ -1199,11 +1205,11 @@ Then('utter_closing_pa_8 is printed', function (callback) {
 
 // 3a0 succesful quitter
 Then('utter_closing_smoke_1 is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_8, callback);
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_1, callback);
 });
 
 Then('utter_ask_closing_lapse_info_correct is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_8, callback);
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_LAPSE_INFO_CORRECT, callback);
 });
 
 When('user answers utter_closing_smoke_1 with 1 is printed', function (callback) {
@@ -1280,8 +1286,7 @@ Then('utter_closing_prevention_plan_5 is printed', function (callback) {
 });
 
 Then('therapist sends an image', function (callback) {
-  	callback
-  	// TODO: need a function to check if this is an image
+  verifyRasaImageResponse(callback);
 });
 
 Then('utter_closing_prevention_plan_6 is printed', function (callback) {
@@ -1293,19 +1298,19 @@ Then('utter_closing_prevention_plan_7 is printed', function (callback) {
 });
 
 Then('utter_closing_prevention_plan_8a is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8a, callback);
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8A, callback);
 });
 
 Then('utter_closing_prevention_plan_8b is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8b, callback);
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8B, callback);
 });
 
 Then('utter_closing_prevention_plan_9a is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9a, callback);
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9A, callback);
 });
 
 Then('utter_closing_prevention_plan_9b is printed', function (callback) {
-  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9b, callback);
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9B, callback);
 });
 
 Then('utter_closing_prevention_plan_10 is printed', function (callback) {

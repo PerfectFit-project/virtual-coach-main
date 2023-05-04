@@ -10,7 +10,7 @@ Feature: Closing dialog
       Then the message is addressed to the therapist
       When therapist produces a response
       Then therapist response is found to be addressed to the user
-       And utter greeting is printed
+       And utter_greeting is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And utter_closing_congratulate_1 is printed
@@ -57,7 +57,7 @@ Feature: Closing dialog
        And utter_closing_pa_7 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_pa_8 is printed.
+       And utter_closing_pa_8 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
        And utter_closing_smoke_1 is printed
@@ -159,7 +159,7 @@ Feature: Closing dialog
        And utter_closing_prevention_plan_15 is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_closing_prevention_plan_15 is printed
+       And utter_ask_closing_relapse_prevention_plan_two_done is printed
       When user answers utter_ask_closing_relapse_prevention_plan_two_done with klaar
       Then the message is addressed to the therapist
       When therapist produces a response
@@ -208,7 +208,7 @@ Feature: Closing dialog
        And dankjewel is printed
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And utter_ask_closing_pf_evaluate is printed is printed
+       And utter_ask_closing_pf_evaluate is printed
       When user answers utter_ask_closing_pf_evaluate with text
       Then the message is addressed to the therapist
       When therapist produces a response
