@@ -58,5 +58,3 @@ services:
     restart: always
     env_file:
       - .env.stage
-    ports:
-      - 8080:8080
