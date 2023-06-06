@@ -30,6 +30,11 @@ services:
   rasa_actions:
     build:
       context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
+    volumes:
+      - type: bind
+        source: ./id_rsa_perfectfitsensor
+        target: /app/sensorprivatekey
+        read_only: true
     expose: ["5055"]
     env_file:
       - .env
