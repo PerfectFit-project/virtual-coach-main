@@ -345,7 +345,7 @@ Then('therapist says to do it at once', function (callback) {
 });
 
 Then('therapist asks when to do the exercise', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_NOW_OR_LATER, callback);
+  verifyRasaResponseMultiplePartial(context.constants.EXPECTED_NOW_OR_LATER, callback);
 });
 
 When('user responds later', function (callback) {
@@ -387,7 +387,7 @@ When('user responds now', function (callback) {
 });
 
 Then('therapist confirms to do it now', function (callback) {
-  verifyRasaResponseMultiple(context.constants.EXPECTED_CONFIRM_NOW, callback);
+  verifyRasaResponse(context.constants.EXPECTED_CONFIRM_NOW, callback);
 });
 
 Then('therapist explains the future self dialog', function (callback) {
@@ -613,7 +613,15 @@ When('user starts general activity dialog', function (callback) {
 });
 
 Then('therapist responds by greeting the user', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_GREETINGS, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_GREETINGS, callback);
+});
+
+Then('therapist says that user can do a new activity', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_CAN_DO_NEW_ACTIVITY, callback);
+});
+
+Then('therapist says the duration of the general activity dialog', function (callback) {
+  verifyRasaResponse(context.constants.GENERAL_ACTIVITY_EXPECTED_DURATION, callback);
 });
 
 Then('therapist responds by asking a rating', function (callback) {
@@ -634,7 +642,7 @@ When('user gives the rating', function (callback) {
 });
 
 Then('therapist thanks for the feedback', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_FEEDBACK, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_THANKS_FOR_FEEDBACK, callback);
 });
 
 Then('therapist thanks for the sharing', function (callback) {
@@ -714,7 +722,7 @@ Then('therapist displays the last input', function (callback) {
 });
 
 Then('therapist asks to edit or save', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_EDIT_SAVE, callback);
+  verifyRasaResponseMultiplePartial(context.constants.EXPECTED_EDIT_SAVE, callback);
 });
 
 When('user chooses to edit', function (callback) {
@@ -722,15 +730,15 @@ When('user chooses to edit', function (callback) {
 });
 
 Then('therapist says prima', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_PRIMA, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_PRIMA, callback);
 });
 
 Then('therapist asks a new input', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_NEW_INPUT_1, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_NEW_INPUT_1, callback);
 });
 
 Then('therapist instructs to write the input', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_NEW_INPUT_2, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_NEW_INPUT_2, callback);
 });
 
 When('user gives the input', function (callback) {
@@ -751,14 +759,14 @@ Then('the new input is saved on the DB', function (callback) {
 });
 
 Then('therapist thanks for the input', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_THANKS_FOR_INPUT, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_THANKS_FOR_INPUT, callback);
 });
 
 Then('therapist introduces new activity', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_NEW_ACTIVITY_INTRO, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_NEW_ACTIVITY_INTRO, callback);
 });
 
-Then('therapist produces a list of activities', function (callback) {
+Then('therapist produces a list of activity types', function (callback) {
   const ActivitiesList = context.therapist_response['content']['TEXT'];
   const SplitList = ActivitiesList.split("'");
   const ActivityOne = SplitList[1];
@@ -766,12 +774,24 @@ Then('therapist produces a list of activities', function (callback) {
   verifyRasaResponse(context.constants.EXPECTED_NEW_ACTIVITIES_LIST, callback);
 });
 
+When('user selects the new activity type', function (callback) {
+  sendPatientMsg(context.constants.NEW_ACTIVITY_SELECTION, callback);
+});
+
+Then('therapist says good activity type chosen', function (callback) {
+  verifyRasaResponseMultiple(context.constants.EXPECTED_GENERAL_ACTIVITY_GOOD_ACTIVITY_TYPE_CHOSEN, callback);
+});
+
+Then('therapist asks to pick an activity from the type', function (callback) {
+  verifyRasaResponse(context.constants.EXPECTED_GENERAL_ACTIVITY_ASK_FOR_ACTIVITY, callback);
+});
+
 When('user selects the new activity', function (callback) {
   sendPatientMsg(context.constants.NEW_ACTIVITY_SELECTION, callback);
 });
 
 Then('therapist says good choice', function (callback) {
-  verifyRasaResponse(context.constants.EXPECTED_GOOD_CHOICE, callback);
+  verifyRasaResponseMultiple(context.constants.EXPECTED_GOOD_CHOICE, callback);
 });
 
 Then('therapist shows new activity', function (callback) {
