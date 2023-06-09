@@ -27,6 +27,11 @@ services:
 
   rasa_actions:
     image: ghcr.io/perfectfit-project/rasa_actions:latest
+    volumes:
+      - type: bind
+        source: ./id_rsa_perfectfitsensor
+        target: /app/sensorprivatekey
+        read_only: true
     restart: always
     expose: ["5055"]
     env_file:

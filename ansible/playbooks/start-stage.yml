@@ -13,6 +13,11 @@
         src: ../SECRET_read_private_packages_token
         dest: ~/SECRET_read_private_packages_token
         mode: '0644'
+    - name: Copy private sensor token
+      ansible.builtin.copy:
+        src: ../id_rsa_perfectfitsensor
+        dest: ~/id_rsa_perfectfitsensor
+        mode: '0644'
     - name: Copy docker compose staging yml
       ansible.builtin.copy:
         src: ../stage/docker-compose.stage.yml
