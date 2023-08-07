@@ -18,7 +18,7 @@ services:
       - .env.sensor
 
   rasa_server:
-    image: ghcr.io/perfectfit-project/rasa_server:latest
+    image: ghcr.io/perfectfit-project/rasa_server:sensors_testing
     restart: always
     expose: ["5005"]
     env_file:
@@ -26,7 +26,7 @@ services:
 
 
   rasa_actions:
-    image: ghcr.io/perfectfit-project/rasa_actions:latest
+    image: ghcr.io/perfectfit-project/rasa_actions:sensors_testing
     volumes:
       - type: bind
         source: ./id_rsa_perfectfitsensor
@@ -43,7 +43,7 @@ services:
     expose: ["6379"]
 
   scheduler:
-    image: ghcr.io/perfectfit-project/scheduler:latest
+    image: ghcr.io/perfectfit-project/scheduler:sensors_testing
     restart: always
     expose: ["8080"]
     depends_on:
