@@ -76,7 +76,7 @@
   "EXPECTED_THANKS_FOR_FEEDBACK": ["Bedankt voor je feedback. Je vindt deze oefening nuttig. Daarom wordt deze toegevoegd aan je EHBO-doos.",
                                    "Dank je wel voor je feedback. We zijn blij dat je deze oefening nuttig vindt. Daarom voegen wij hem toe aan je EHBO-doos.",
 								   "Bedankt voor je reactie. Fijn dat deze oefening nuttig voor je is. Deze oefening wordt daarom toegevoegd aan je EHBO-doos."],
-  "EXPECTED_THANKS_FOR_SHARING": "Oke, bedankt om dat te delen!",
+  "EXPECTED_THANKS_FOR_SHARING": "Oke, bedankt voor het delen!",
   "EXPECTED_INTRO_STATE_QUESTION_ANSWERING": ["Ik wil je nu graag een paar vragen stellen over de oefening die je gaat doen.",
 											  "Dan zou ik je nu graag wat vragen stellen over de oefening die je gaat doen.",
 											  "Ik zou je nu graag wat willen vragen over de oefening die je gaat doen."],
