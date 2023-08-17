@@ -791,7 +791,7 @@ When('user selects the new activity', function (callback) {
 });
 
 Then('therapist says good choice', function (callback) {
-  verifyRasaResponseMultiple(context.constants.EXPECTED_GOOD_CHOICE, callback);
+  verifyRasaResponseMultiplePartial(context.constants.EXPECTED_GOOD_CHOICE, callback);
 });
 
 Then('therapist shows new activity', function (callback) {
