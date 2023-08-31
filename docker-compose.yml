@@ -12,7 +12,7 @@ services:
 
   manage_db:
     build:
-      context: C:\Users\bscheltinga\OneDrive - University of Twente\Documents\virtual-coach-db
+      context: https://github.com/PerfectFit-project/virtual-coach-db.git#main
     tty: true
     restart: on-failure
     command: ["/app/utils/init-db-tests.sh"]
@@ -21,7 +21,7 @@ services:
 
   rasa_server:
     build:
-      context: C:/Users/bscheltinga/OneDrive - University of Twente/Documents/virtual-coach-rasa/Rasa_Bot
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot
     ports:
       - 5005:5005
     expose: ["5005"]
@@ -30,7 +30,7 @@ services:
 
   rasa_actions:
     build:
-      context: C:/Users/bscheltinga/OneDrive - University of Twente/Documents/virtual-coach-rasa/Rasa_Bot/actions
+      context: https://github.com/PerfectFit-project/virtual-coach-rasa.git#main:Rasa_Bot/actions
     expose: ["5055"]
     env_file:
       - .env
