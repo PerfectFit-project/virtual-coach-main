@@ -4,19 +4,31 @@ fit system.
 
 ###  There is no synced data from the sensor data collector
 To check whether sensor data is coming in, the number of steps on this day can be checked by
-typing `doel` to the coach. If a number is printed, at least this day, data came in.
+typing `doel` to the coach. The printed number is the amount of steps recorded today. So if a number
+is printed, you are sure that it has been connected today. The SenSeeAct apps should give a
+notification on the phone: 'Measurement is active'
 
-To have data uploaded from the smartwatch to the SenSeeAct server, the following requirements are needed:
-1. The watch is charged, worn and bluetooth is on. The SenSeeAct app is running on the watch.
-2. The phone has the SenSeeAct app running, the watch is connected to the phone with bluetooth and the phone is connected to the 
-internet. Whether the phone-watch connection status is seen in the Garmin Connect app. This will have a green 
-circle in the right top corner after opening. When the SenSeeAct app on the phone is open, it would
-display that it is measuring the physical activity when working correctly. There should always be a notification that the
-SenSeeAct app is running on the phone.
+#### Troubleshooting - Problems with bluetooth connection
+Make sure there is a bluetooth connection between the phone and watch. Garmin Connect app on the phone should display
+a green circle at the top of the screen. Also, if you hold the `LIGHT` button on the watch, it would
+display a green 📞 icon, meaning that the watch is connected to a phone. 
 
-#### Troubleshooting
-1. Check the bluetooth connection with the watch in Garmin Connect (top right should have a green circle).
-   1. The watch can get into 'Energy saving mode', disabling bluetooth.
-2. Open the SenSeeAct app to make sure the app is running.
+If there is no connection, the following steps could be tried:
+1. Make sure the bluetooth on the phone is ON.
+2. Make sure bluetooth is ON, on the watch:
+   1. Hold the `LIGHT` button
+   2. Navigate to the 📞 icon.
+   3. Press `START` and make sure there is no diagonal line through the 📞 icon.
+3. The watch can get into 'Energy saving mode', disabling bluetooth. To disable energy save mode:
+   1. Hold the `LIGHT` button
+   2. Navigate to the 📞 icon.
+   3. Press `START` and make sure there is no diagonal line through the 📞 icon.
+
+#### Troubleshooting - Other problems
+1. Open the SenSeeAct app to make sure the app is running.
    1. Relogin in the SenSeeAct app on the phone if the problem still persists.
-3. Reactivate the SenSeeAct app on the watch.
+2. Reactivate the SenSeeAct app on the watch.
+   1. Press the `START` button
+   2. Navigate with the `UP` and `DOWN` button to SenSeeAct in the list
+   3. Press `START` when SenSeeAct is chosen
+   4. After the SenSeeAct app is shown on the screen, press `BACK`
