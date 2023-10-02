@@ -13,6 +13,12 @@ Feature: General activity dialog
        And therapist responds by greeting the user
        And therapist produces a response
        And therapist response is found to be addressed to the user
+	   And therapist says that user can do a new activity
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+	   And therapist says the duration of the general activity dialog
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
        And therapist asks when to do the exercise
       When user responds now
       Then the message is addressed to the therapist
@@ -62,8 +68,16 @@ Feature: General activity dialog
        And therapist introduces new activity
        And therapist produces a response
        And therapist response is found to be addressed to the user
-       And therapist produces a list of activities
-      When user selects the new activity
+       And therapist produces a list of activity types
+      When user selects the new activity type
+      Then the message is addressed to the therapist
+      When therapist produces a response
+	   And therapist response is found to be addressed to the user
+       And therapist says good activity type chosen
+	   And therapist produces a response
+       And therapist response is found to be addressed to the user
+       And therapist asks to pick an activity from the type
+	  When user selects the new activity
       Then the message is addressed to the therapist
       When therapist produces a response
        And therapist response is found to be addressed to the user

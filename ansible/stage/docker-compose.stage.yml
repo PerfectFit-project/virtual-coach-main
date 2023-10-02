@@ -19,20 +19,32 @@ services:
 
   rasa_server:
     image: ghcr.io/perfectfit-project/rasa_server:latest
+    restart: always
     expose: ["5005"]
+    env_file:
+      - .env.stage
+
 
   rasa_actions:
     image: ghcr.io/perfectfit-project/rasa_actions:latest
+    volumes:
+      - type: bind
+        source: ./id_rsa_perfectfitsensor
+        target: /app/sensorprivatekey
+        read_only: true
+    restart: always
     expose: ["5055"]
     env_file:
       - .env.stage
 
   redis:
     image: "redis:alpine"
+    restart: always
     expose: ["6379"]
 
   scheduler:
     image: ghcr.io/perfectfit-project/scheduler:latest
+    restart: always
     expose: ["8080"]
     depends_on:
      - redis
@@ -42,10 +54,12 @@ services:
 
   niceday_broker:
     image: ghcr.io/perfectfit-project/niceday_broker:latest
+    restart: always
     env_file:
       - .env.stage
 
   niceday_api:
     image: ghcr.io/perfectfit-project/niceday_api:latest
+    restart: always
     env_file:
       - .env.stage
