@@ -50,6 +50,16 @@ function verifyRasaResponse(expected_response, callback){
   callback('Error: ', context.therapist_response['content']['TEXT']);
 }
 
+function verifyRasaImageResponse(callback){
+  assert(context.hasOwnProperty("therapist_response"));
+  assert(context.therapist_response.hasOwnProperty("content"));
+  assert(context.therapist_response.hasOwnProperty("attachmentIds"));
+  if (context.therapist_response['attachmentIds'] !== "") {
+    callback();
+  }
+  callback('Error: ', context.therapist_response['attachmentIds']);
+}
+
 // Here not the response text has to be equal to one of the options in expected_response.
 // Instead, is enough if one of the options in expected_response is contained in the response text.
 function verifyRasaResponseMultiplePartial(expected_response, callback){
@@ -1130,4 +1140,345 @@ Then('user participant code is in db', function (callback) {
 		    callback('Error: ', participant_code);
 		}
 	});
+});
+
+When('we ask for the closing dialog', function (callback) {
+  sendPatientMsg(context.constants.ASK_CLOSING_DIALOG, callback);
+});
+
+Then('utter_greeting is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_GREETING, callback);
+});
+
+Then('utter_closing_congratulate_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_1, callback);
+});
+
+Then('utter_closing_congratulate_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_2, callback);
+});
+
+Then('utter_closing_congratulate_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_3, callback);
+});
+
+Then('utter_closing_congratulate_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_4, callback);
+});
+
+Then('utter_closing_congratulate_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_5, callback);
+});
+
+Then('utter_closing_congratulate_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CONGRATULATE_6, callback);
+});
+
+Then('utter_closing_pa_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_1, callback);
+});
+
+Then('utter_closing_pa_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_2, callback);
+});
+
+Then('utter_closing_pa_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_3, callback);
+});
+
+Then('utter_closing_pa_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_4, callback);
+});
+
+Then('utter_closing_pa_5 is printed', function (callback) {
+  	context.client.query('SELECT * FROM users WHERE long_term_pa_goal = $1',
+					     [context.constants.LONG_TERM_PA_GOAL],
+					     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+      } else {
+        verifyRasaResponse(res.rows[0]['long_term_pa_goal'], callback);
+	  }
+    });
+});
+
+Then('utter_ask_closing_pa_evaluation is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_PA_EVALUATION, callback);
+});
+
+// 2a goal achieved
+When('user answers utter_ask_closing_pa_evaluation with 1', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_PA_EVALUATION_ANSWER, callback);
+});
+
+Then('utter_closing_pa_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_6, callback);
+});
+
+Then('utter_closing_pa_7 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_7, callback);
+});
+
+Then('utter_closing_pa_8 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PA_8, callback);
+});
+
+// 3a0 succesful quitter
+Then('utter_closing_smoke_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_1, callback);
+});
+
+Then('utter_ask_closing_lapse_info_correct is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_LAPSE_INFO_CORRECT, callback);
+});
+
+When('user answers utter_closing_smoke_1 with 1 is printed', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_LAPSE_INFO_CORRECT_ANSWER, callback);
+});
+
+Then('utter_closing_smoke_succes_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_1, callback);
+});
+
+Then('utter_closing_smoke_succes_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_2, callback);
+});
+
+Then('utter_closing_smoke_succes_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_3, callback);
+});
+
+Then('utter_closing_smoke_succes_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_4, callback);
+});
+
+Then('utter_closing_smoke_succes_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_5, callback);
+});
+
+Then('utter_closing_smoke_succes_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_6, callback);
+});
+
+Then('utter_closing_smoke_succes_7 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_7, callback);
+});
+
+Then('utter_closing_smoke_succes_8 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_SMOKE_SUCCESS_8, callback);
+});
+
+Then('utter_ask_closing_reflection_smoke_done is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_REFLECTION_SMOKE_DONE, callback);
+});
+
+// 4 relapse prevention plan
+When('user answers utter_ask_closing_reflection_smoke_done with klaar', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_RELAPSE_PREVENTION_PlAN_READY, callback);
+});
+
+Then('utter_closing_prevention_plan_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_1, callback);
+});
+
+Then('utter_closing_prevention_plan_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_2, callback);
+});
+
+Then('utter_closing_prevention_plan_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_3, callback);
+});
+
+Then('utter_closing_prevention_plan_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_4, callback);
+});
+
+Then('utter_ask_closing_relapse_prevention_plan_one_done is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_RELAPSE_PREVENTION_PLAN_ONE_DONE, callback);
+});
+
+When('user answers utter_ask_closing_relapse_prevention_plan_one_done with klaar', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_RELAPSE_PREVENTION_PlAN_READY, callback);
+});
+
+Then('utter_closing_prevention_plan_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_5, callback);
+});
+
+Then('therapist sends an image', function (callback) {
+  verifyRasaImageResponse(callback);
+});
+
+Then('utter_closing_prevention_plan_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_6, callback);
+});
+
+Then('utter_closing_prevention_plan_7 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_7, callback);
+});
+
+Then('utter_closing_prevention_plan_8a is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8A, callback);
+});
+
+Then('utter_closing_prevention_plan_8b is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_8B, callback);
+});
+
+Then('utter_closing_prevention_plan_9a is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9A, callback);
+});
+
+Then('utter_closing_prevention_plan_9b is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_9B, callback);
+});
+
+Then('utter_closing_prevention_plan_10 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_10, callback);
+});
+
+Then('utter_closing_prevention_plan_11 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_11, callback);
+});
+
+Then('utter_closing_prevention_plan_12 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_12, callback);
+});
+
+Then('utter_closing_prevention_plan_13 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_13, callback);
+});
+
+Then('utter_closing_prevention_plan_14 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_14, callback);
+});
+
+Then('utter_closing_prevention_plan_15 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_15, callback);
+});
+
+Then('utter_ask_closing_relapse_prevention_plan_two_done is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_RELAPSE_PREVENTION_PLAN_TWO_DONE, callback);
+});
+
+When('user answers utter_ask_closing_relapse_prevention_plan_two_done with klaar', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_RELAPSE_PREVENTION_PlAN_READY, callback);
+});
+
+// 4 relapse prevention plan quitter
+Then('utter_closing_prevention_plan_16 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_PLAN_16, callback);
+});
+
+Then('utter_closing_prevention_success_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_1, callback);
+});
+
+Then('utter_closing_prevention_success_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_2, callback);
+});
+
+Then('utter_closing_prevention_success_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_3, callback);
+});
+
+Then('utter_closing_prevention_success_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_4, callback);
+});
+
+Then('utter_closing_prevention_success_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_5, callback);
+});
+
+Then('utter_closing_prevention_success_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_PREVENTION_SUCCESS_6, callback);
+});
+
+// 4 final closing
+Then('utter_closing_closing_1 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_1, callback);
+});
+
+Then('utter_closing_closing_2 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_2, callback);
+});
+
+Then('utter_closing_closing_3 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_3, callback);
+});
+
+Then('utter_closing_closing_4 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_4, callback);
+});
+
+Then('utter_closing_closing_5 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_5, callback);
+});
+
+Then('utter_ask_closing_pf_grade is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_PF_GRADE, callback);
+});
+
+When('user answers utter_ask_closing_pf_grade with 7', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_PF_GRADE_ANSWER, callback);
+});
+
+Then('dankjewel is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_DANKJEWEL, callback);
+});
+
+Then('utter_ask_closing_pf_evaluate is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_ASK_CLOSING_PF_EVALUATE, callback);
+});
+
+When('user answers utter_ask_closing_pf_evaluate with text', function (callback) {
+  sendPatientMsg(context.constants.CLOSING_PF_EVALUATE_ANSWER, callback);
+});
+
+Then('utter_closing_closing_6 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_6, callback);
+});
+
+Then('utter_closing_closing_7 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_7, callback);
+});
+
+Then('utter_closing_closing_8 is printed', function (callback) {
+  verifyRasaResponse(context.constants.UTTER_CLOSING_CLOSING_8, callback);
+});
+
+Then('pa_evaluation_form_grade is in db', function (callback) {
+
+	// Get participant evaluation code from db
+    context.client.query('SELECT * FROM users WHERE pf_evaluation_grade = $1',
+                     [context.constants.CLOSING_PF_GRADE_ANSWER],
+                     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+		}
+		else{
+			if (res.rows[0]['pf_evaluation_grade'] == context.constants.CLOSING_PF_GRADE_ANSWER) {
+			callback();
+		    }
+		    callback('Error: ', res.rows[0]['pf_evaluation_grade']);
+	  }
+    });
+});
+
+Then('pa_evaluation_form_evaluation is in db', function (callback) {
+
+	// Get participant evaluation code from db
+    context.client.query('SELECT * FROM users WHERE pf_evaluation_comment = $1',
+                     [context.constants.CLOSING_PF_EVALUATE_ANSWER],
+                     (err, res) => {
+      if (err) {
+        callback('DB reading error ' + err);
+		}
+		else{
+			if (res.rows[0]['pf_evaluation_comment'] == context.constants.CLOSING_PF_EVALUATE_ANSWER) {
+			callback();
+		    }
+		    callback('Error: ', res.rows[0]['pf_evaluation_comment']);
+	  }
+    });
 });
