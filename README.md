@@ -89,6 +89,10 @@ By running the tests, the features implemented in the .feature files contained i
 Each scenario in the feature represents all the steps of one dialog, and the testing executes all of them and verifies that the result is the expected one.
 In case of modifications to the dialogs, the testing steps have to be updated accordingly, by modifying the steps in the .feature file and their implementation in the agenda_steps.js file.
 
+## Troubleshooting
+A troubleshooting guide is written to help debugging when running in problems with the full system. It is found in 
+`docs/troubleshooting_guide.md` or [here](https://github.com/PerfectFit-project/virtual-coach-main/tree/main/docs/troubleshooting_guide.md).
+
 ## For developers
 By default this setup use the main branch for each component. 
 As a developer you often want to use a different branch, or a local clone of the repository.
