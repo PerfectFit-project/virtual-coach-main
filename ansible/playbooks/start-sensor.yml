@@ -1,0 +1,36 @@
+---
+- name: Update sensor server
+  hosts: sensor
+  user: root
+  tasks:
+    - name: Copy .env for staging
+      ansible.builtin.copy:
+        src: ../.env.sensor
+        dest: ~/.env.sensor
+        mode: '0644'
+    - name: Copy private package token
+      ansible.builtin.copy:
+        src: ../SECRET_read_private_packages_token
+        dest: ~/SECRET_read_private_packages_token
+        mode: '0644'
+    - name: Copy private sensor token
+      ansible.builtin.copy:
+        src: ../id_rsa_perfectfitsensor
+        dest: ~/id_rsa_perfectfitsensor
+        mode: '0644'
+    - name: Copy docker compose sensor yml
+      ansible.builtin.copy:
+        src: ../sensor/docker-compose.sensor.yml
+        dest: ~/docker-compose.sensor.yml
+        mode: '0644'
+    - name: Log into docker ghcr
+      shell: cat SECRET_read_private_packages_token | docker login ghcr.io -u USERNAME --password-stdin
+    - name: Stop docker compose (if up)
+      shell: 'docker compose -f docker-compose.sensor.yml down --remove-orphans --rmi all -v'
+    - name: Stop any containers that may have been missed by the "docker compose down"
+      shell: 'docker stop $(docker container ls -q)'
+      ignore_errors: true
+    - name: Prune containers and networks
+      shell: 'docker system prune -a --volumes -f'
+    - name: Start docker compose
+      shell: 'docker compose -f docker-compose.sensor.yml up -d'

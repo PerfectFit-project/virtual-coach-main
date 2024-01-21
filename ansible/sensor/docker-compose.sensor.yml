@@ -1,0 +1,65 @@
+version: "3.0"  # orig 3.0
+services:
+  db:
+    image: postgres
+    expose: ["5432"]
+    restart: always
+    environment:
+      POSTGRES_DB: perfectfit
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+
+  manage_db:
+    build: https://github.com/PerfectFit-project/virtual-coach-db.git#main
+    tty: true
+    restart: on-failure
+    command: ["/app/utils/init-db-tests.sh"]
+    env_file:
+      - .env.sensor
+
+  rasa_server:
+    image: ghcr.io/perfectfit-project/rasa_server:sensors_testing
+    restart: always
+    expose: ["5005"]
+    env_file:
+      - .env.sensor
+
+
+  rasa_actions:
+    image: ghcr.io/perfectfit-project/rasa_actions:sensors_testing
+    volumes:
+      - type: bind
+        source: ./id_rsa_perfectfitsensor
+        target: /app/sensorprivatekey
+        read_only: true
+    restart: always
+    expose: ["5055"]
+    env_file:
+      - .env.sensor
+
+  redis:
+    image: "redis:alpine"
+    restart: always
+    expose: ["6379"]
+
+  scheduler:
+    image: ghcr.io/perfectfit-project/scheduler:sensors_testing
+    restart: always
+    expose: ["8080"]
+    depends_on:
+     - redis
+     - rasa_server
+    env_file:
+      - .env.sensor
+
+  niceday_broker:
+    image: ghcr.io/perfectfit-project/niceday_broker:latest
+    restart: always
+    env_file:
+      - .env.sensor
+
+  niceday_api:
+    image: ghcr.io/perfectfit-project/niceday_api:latest
+    restart: always
+    env_file:
+      - .env.sensor
